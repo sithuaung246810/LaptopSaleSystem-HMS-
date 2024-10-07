@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+     
+    <title>Admin Laptop Brand List</title>
+    <style>
+    	/* Reset some basic styles */
+body, h1, h2, p, table, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+ 
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+
+
+#home {
+	margin-top:3px;
+    font-size: 35px;
+    position:absolute;
+    right:3%;
+    color:white;
+}
+
+#back {
+	margin-top:3px;
+    font-size: 32px;
+    position:absolute;
+    left:3%;
+    color:white;
+}
+ 
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+ 
+.brand-list, .add-brand {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 220px;
+}
+ 
+.brand-list {
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+.brand-list h2 {
+    font-size: 1.75em;
+    margin-bottom: 15px;
+    color:black;
+}
+ 
+table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+		    border-radius: 12px;
+		    overflow: hidden;
+		    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background:#ccccff;
+		    color: #000;
+		    margin-top:20px;
+        }
+        tr:nth-child(even) {
+            background-color: white;
+            color: black;
+        }
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            padding: 10px;
+        }
+ 
+
+ 
+
+.add-brand {
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height:200px;
+}
+ 
+.add-brand h2 {
+    font-size: 1.75em;
+    margin-bottom: 15px;
+}
+
+tbody {
+	color: black;
+}
+ 
+#brand-name {
+	display: flex-start;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+ 
+#brand-name2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    justify-content: center;
+}
+ 
+#liveAlertBtn {
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 20%;
+    margin-left: 190px;
+}
+ 
+#liveAlertBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+}
+   
+.material-icons{
+	 color:#6e45e2;
+}
+
+#delete1{
+	 font-size: 20px;
+	 margin-left: 20px;
+	 color:#E33535;	
+}
+
+#update1{
+	font-size: 20px;
+	color:#6e45e2;
+}
+
+/* Pagination Container */
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination-info {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.pagination-link {
+    color: #6e45e2;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    background:#ccccff;
+    transition: background 0.3s, color 0.3s;
+}
+
+.pagination-link:hover {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.current {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+#search {
+	width: 200px;
+	height: 30px;
+	border-radius:10px;
+	margin-left: 12px;
+}
+
+#searchb {
+	width: 80px;
+	height: 40px;
+	border-radius:20px;
+	border-color: white;
+	color: white;
+	background: linear-gradient(160deg, #88d3ce, #6e45e2);
+}
+
+#back {
+	margin-top:3px;
+    font-size: 32px;
+    position:absolute;
+    left:3%;
+    color:white;
+}
+
+form {
+	margin-left: 88px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination-info {
+        font-size: 0.9rem;
+    }
+
+    .pagination-link {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive adjustments for phones */
+/* Responsive adjustments for phones */
+@media (max-width: 480px) {
+    header {
+        padding: 15px 0; /* Adjust padding for the header */
+    }
+
+    .table-responsive {
+        width: 100%; /* Full width for the responsive table wrapper */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    table {
+        width: 100%; /* Full width for the table */
+        font-size: 10px; /* Smaller font size for table */
+        border-collapse: collapse; /* Ensure borders collapse properly */
+        min-width: 600px; /* Set a minimum width to allow scrolling */
+    }
+
+    th, td {
+        padding: 5px; /* Reduced padding for better fit */
+        display: block; /* Stack cells vertically for small screens */
+        text-align: left; /* Align text to the left for better readability */
+    }
+
+    tr {
+        margin-bottom: 10px; /* Space between rows */
+        border: 1px solid #ddd; /* Ensure borders are visible */
+        border-radius: 8px; /* Add rounded corners */
+        background: #fff; /* Ensure the background is white for contrast */
+    }
+
+    th {
+        display: none; /* Hide headers on small screens */
+    }
+
+    td::before {
+        content: attr(data-label); /* Use data-label for responsive labels */
+        font-weight: bold; /* Make labels bold */
+        display: inline-block; /* Display as inline-block for proper formatting */
+        width: 50%; /* Label width */
+        text-transform: capitalize; /* Capitalize labels */
+        font-size: 12px; /* Adjust label font size */
+    }
+
+    img {
+        max-width: 80px; /* Adjusted image size for thumbnails */
+        max-height: 60px; /* Adjusted image height */
+    }
+
+    #home, #add {
+        font-size: 22px; /* Font size adjustments for icons */
+    }
+
+    .pagination-link {
+        padding: 4px 6px; /* Adjusted pagination link size */
+        font-size: 0.85rem; /* Adjusted pagination font size */
+    }
+
+    .pagination-info {
+        font-size: 0.85rem; /* Adjusted pagination info size */
+        text-align: center; /* Center aligned for better presentation */
+    }
+
+    td[data-label="action"] {
+        text-align: center; /* Center align action buttons */
+    }
+}
+#label {
+	text-decoration: none;
+	color: black;
+}
+#Ah {
+	margin-left:3px;
+}
+
+.sync-status button a {
+  margin-top: 0px !important;
+
+}
+</style>
+
+</head>
+<body>
+        <header>
+       <!--  <div class="container1">
+        	<div><a th:href="@{/admin/laptops}"><i class="fa-regular fa-circle-left" id="back"></i></a></div>
+            <h1 class="pinfo">Laptop Brand Administration</h1>
+            <div><a th:href="@{/admin}"><i class="material-icons" id="home" >home</i></a></div>
+        </div> -->
+         <div th:replace="fragments/adminNavbar :: navbar"></div>
+    </header>
+		<!-- Display Success Alert if the success variable exists -->
+    <!-- <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <span th:text="${success}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+
+    <!-- Display Error Alert if the error variable exists -->
+    <!-- <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+    
+    <!-- Display Success Alert if the success variable exists -->
+<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
+    <span th:text="${success}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<!-- Display Error Alert if the error variable exists -->
+<div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert">
+    <span th:text="${error}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+		
+        <div class="container">
+        <main>
+            <section class="brand-list">
+                <h2>Brand List</h2>
+                <!-- <div th:if="${success}" th:text="${success}" style="color : green;"></div> -->
+    			
+                <table>
+<!-- ead>
+    <tr>
+        <th>ID
+        	<a th:href="@{'/admin/brand'}">
+                <i class="material-icons"><span th:text="${'arrow_downward'}"></span></i></a>
+
+             <a th:href="@{'/admin/brand/reverse'}">
+                 <i class="material-icons"><span th:text="${'arrow_upward'}"></span></i> </a>
+
+        </th>
+        
+        <th>
+            Brand Name
+         
+        </th>
+        <th>Actions</th>
+    </tr>
+</thead>
+                   <tbody>
+                    
+                        <tr th:each="brand:${brands}">
+                            <td th:text="${brand.id}"></td>
+                           
+                            <td th:text="${brand.brandName}"></td>
+                        
+                            <td id="icons">
+                                <a th:href="@{/admin/brand/update/{id}(id=${brand.id})}"><i class="fa-solid fa-pen-to-square" id="update1"></i></a>
+                                <a th:href="@{/admin/brand/delete/{id}(id=${brand.id})}"><i class="fa-regular fa-trash-can" id="delete1" onclick="return confirmDelete()"></i></a>
+                            </td>
+                        </tr>
+                       
+                    </tbody> 
+                    
+                    <table> -->
+    <thead>
+        <tr>
+     <!--        <th>ID</th>
+            <th>Brand Name</th> -->
+            <th><a th:href="@{'/admin/brandlist?page=1&sortField=id&sortDir=' + ${reverseSortDir}}" id="label">ID</a></th>
+            <th><a th:href="@{'/admin/brandlist?page=1&sortField=brandName&sortDir=' + ${reverseSortDir}}" id="label">Brand Name</a></th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="brand : ${brands}">
+            <td th:text="${brand.id}"></td>
+            <td th:text="${brand.brandName}"></td>
+            <td>
+                <a th:href="@{/admin/brand/update/{id}(id=${brand.id})}"><i class="fa-solid fa-pen-to-square" id="update1"></i></a>
+                <a th:href="@{/admin/brand/delete/{id}(id=${brand.id})}" onclick="return confirmDelete()"><i class="fa-regular fa-trash-can" id="delete1"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<!-- Pagination Controls -->
+<!--  <div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                <a class="page-link" th:href="@{'/admin/brands?page=' + ${currentPage - 1} + '&size=5'}">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{'/admin/brands?page=' + ${i} + '&size=5'}" th:text="${i + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link" th:href="@{'/admin/brands?page=' + ${currentPage + 1} + '&size=5'}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div> -->
+							
+<div th:if="${totalPages > 1}" class="pagination-container">
+    <div class="pagination-controls">
+        <span>Total Rows: [[${totalItems}]] &nbsp; &nbsp;</span>
+
+        <!-- Previous -->
+        <span>
+            <a th:if="${currentPage > 1}" th:href="@{'/admin/brandlist?page=' + ${currentPage-1} + '&size=5'}" class="pagination-link">
+                <i class="fa-solid fa-backward-fast" id="backward"></i>
+            </a>
+            <span th:unless="${currentPage > 1}" class="pagination-link disabled">
+                <i class="fa-solid fa-backward-fast" id="backward"></i>
+            </span>
+        </span>
+<!-- 
+        Always Show First Page
+        <span>
+            <a th:if="${currentPage != 1}" th:href="@{'/admin/brandlist?page=' + ${1} + '&size=5'}" class="pagination-link">1</a>
+            <span th:unless="${currentPage != 1}" class="pagination-link current">1</span>
+        </span>
+
+        Show Ellipsis After First Page if Necessary
+        <span th:if="${currentPage > 4}">
+            <span class="pagination-link">...</span>
+        </span>
+
+        Display Middle Pages
+        <span th:if="${totalPages > 5}"> -->
+            <!-- Case: If currentPage is less than or equal to 3, show 2-5 -->
+            <span th:each="i : ${#numbers.sequence(1, totalPages-1)}">
+                <a th:if="${currentPage != i}" th:href="@{'/admin/brandlist?page=' + ${i} + '&size=5'}" class="pagination-link">[[${i}]]</a>
+                <span th:unless="${currentPage != i}" class="pagination-link current">[[${i}]]</span>
+            </span>
+
+         <!-- Case: If currentPage is near the end (e.g., last three pages), show from totalPages - 4 to totalPages - 1 -->
+         <!--       <span th:each="i : ${#numbers.sequence(totalPages - 4, totalPages - 1)}" th:if="${currentPage >= totalPages - 2}">
+                <a th:if="${currentPage != i}" th:href="@{'/admin/brandlist?page=' + ${i} + '&size=5'}" class="pagination-link">[[${i}]]</a>
+                <span th:unless="${currentPage != i}" class="pagination-link current">[[${i}]]</span>
+            </span>
+
+            Case: If currentPage is in the middle, show currentPage - 2 to currentPage + 2
+            <span th:each="i : ${#numbers.sequence(currentPage - 2, currentPage + 2)}" th:if="${currentPage > 3 && currentPage < totalPages - 2}">
+                <a th:if="${currentPage != i}" th:href="@{'/admin/brandlist?page=' + ${i} + '&size=5'}" class="pagination-link">[[${i}]]</a>
+                <span th:unless="${currentPage != i}" class="pagination-link current">[[${i}]]</span>
+            </span>
+        </span>
+ -->
+        <!-- Show Ellipsis Before Last Page if Necessary -->
+     <!--    <span th:if="${currentPage < totalPages - 3}">
+            <span class="pagination-link">...</span>
+        </span> -->
+
+ <!-- Always Show Last Page -->
+        <span>
+            <a th:if="${currentPage != totalPages}" th:href="@{'/admin/brandlist?page=' + ${totalPages} + '&size=5'}" class="pagination-link">[[${totalPages}]]</a>
+            <span th:unless="${currentPage != totalPages}" class="pagination-link current">[[${totalPages}]]</span>
+        </span> 
+
+        <!-- Next -->
+        <span>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/admin/brandlist?page=' + ${currentPage+1} + '&size=5'}" class="pagination-link">
+                <i class="fa-solid fa-forward-fast" id="forward"></i>
+            </a>
+            <span th:unless="${currentPage < totalPages}" class="pagination-link disabled">
+                <i class="fa-solid fa-forward-fast" id="forward"></i>
+            </span>
+        </span>
+
+        <span>&nbsp; &nbsp; Page [[${currentPage}]] of [[${totalPages}]]</span>
+    </div>
+</div>
+
+     
+                </table>
+            </section>
+  
+            <section class="add-brand">
+                <h2>Add New Brand</h2>
+         		<!-- <div th:if="${error}" th:text="${error}" style="color : red;"></div> -->
+                
+                <form id="Ah" th:action="@{/admin/brand/add}"  method="post" th:object="${brand}">
+                    <input type="hidden" name="id" th:field="*{id}">
+                     <label  id="brand-name"  for="brand-name">Brand Name:</label>
+                    <input type="text" th:field="*{brandName}" id="brand-name2" name="brand-name" placeholder="Enter brand name" required="required"/><br>
+                    <button type="submit" value="Add"  class="btn btn-primary" id="liveAlertBtn">Add</button>
+                </form>  
+                
+     
+        
+            
+            </section>
+        </main>
+    </div> 
+    <script>
+	function confirmDelete(){
+		return window.confirm("Are you sure you want to delete this?");
+		/* if (confirm){
+			window.alert("Item deleted successfully");
+		}else{
+			window.alert("Deletion Canceled");
+		} */
+	}
+	// Function to append custom alert
+    function appendAlert(message, type) {
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = `
+            <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        alertPlaceholder.append(wrapper);
+    }
+
+    // Event listener for button click to show custom alert
+    const alertTrigger = document.getElementById('liveAlertBtn');
+    alertTrigger.addEventListener('click', () => {
+        appendAlert('This is a custom alert message.', 'success');
+    });
+		
+  
+    const rowsPerPage = 5;
+    const table = document.querySelector("tbody");
+    const rows = table.querySelectorAll("tr");
+    const rowsCount = rows.length;
+    const pageCount = Math.ceil(rowsCount / rowsPerPage);
+    const pagination = document.querySelector(".pagination");
+
+    let currentPage = 1;
+
+    function displayRows(start, end) {
+        rows.forEach((row, index) => {
+            if (index >= start && index < end) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+    function setupPagination() {
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= pageCount; i++) {
+            const li = document.createElement("li");
+            li.className = "page-item";
+            const a = document.createElement("a");
+            a.className = "page-link";
+            a.href = "#";
+            a.textContent = i;
+
+            li.appendChild(a);
+            pagination.appendChild(li);
+
+            a.addEventListener("click", (e) => {
+                e.preventDefault();
+                currentPage = i;
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+                displayRows(start, end);
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        displayRows(0, rowsPerPage);
+        setupPagination();
+    });
+
+    
+
+    <!-- JavaScript to auto-hide the alerts after 4 seconds -->
+   
+        // Function to hide the alert after 4 seconds
+        setTimeout(function() {
+            var successAlert = document.getElementById("successAlert");
+            var errorAlert = document.getElementById("errorAlert");
+            
+            if (successAlert) {
+                successAlert.classList.remove("show");
+                successAlert.classList.add("hide");
+            }
+            
+            if (errorAlert) {
+                errorAlert.classList.remove("show");
+                errorAlert.classList.add("hide");
+            }
+        }, 3000); // 4000 milliseconds = 4 seconds
+    
+        
+
+    
+    
+		
+</script>   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

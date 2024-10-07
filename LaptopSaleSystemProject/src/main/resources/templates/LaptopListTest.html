@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Laptop List</title>
+   	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+/* General styles */
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+ 
+header {
+    background: linear-gradient(160deg, #88d3ce, #6e45e2);
+    color: #fff;
+    padding: 22px 0;
+    border-top-right-radius:10px;
+    margin-bottom:50px;
+}
+ 
+header .container1 {
+     display: flex;
+}
+ 
+header .pinfo {
+    margin: 0;
+    margin:auto;
+    text-align:center;
+    align-items: center;
+    justify-content: center;
+}
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#home {
+	margin-top:3px;
+    font-size: 35px;
+    position:absolute;
+    right:3%;
+}
+#add{
+	margin-top:5px;
+	margin-right: 15px;
+    font-size: 30px;
+    position:absolute;
+    right:7%;
+}
+ 
+#delete{
+	 font-size: 20px;
+	 margin-left: 20px;
+}
+#update{
+	font-size: 20px;
+}
+#backward,#forward{
+	font-size: 15px;
+}
+
+/* Table styles */
+table {
+    width: 87%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+    background:#ccccff;
+    color: #fff;
+    margin-top:20px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+    color:black;
+}
+
+th {
+    font-weight: bold;
+    font-size:18px;
+    padding:13px;
+    color:black;
+}
+
+/* Image styles */
+img {
+    max-width: 120px;
+    max-height: 80px;
+}
+
+/* Links in table */
+a {
+    color: #6e45e2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .pagination-controls {
+        flex-direction: column;
+    }
+}
+
+ /* Pagination Container */
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination-info {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination-link {
+    color: #6e45e2;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    background:#ccccff;
+    transition: background 0.3s, color 0.3s;
+}
+
+.pagination-link:hover {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.current {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+#search {
+	width: 200px;
+	height: 30px;
+	border-radius:10px;
+	margin-left: 12px;
+}
+
+#searchb {
+	width: 80px;
+	height: 40px;
+	border-radius:20px;
+	border-color: white;
+	color: white;
+	background: linear-gradient(160deg, #88d3ce, #6e45e2);
+}
+
+form {
+	margin-left: 88px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination-info {
+        font-size: 0.9rem;
+    }
+
+    .pagination-link {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive adjustments for phones */
+/* Responsive adjustments for phones */
+@media (max-width: 480px) {
+    header {
+        padding: 15px 0; /* Adjust padding for the header */
+    }
+
+    .table-responsive {
+        width: 100%; /* Full width for the responsive table wrapper */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    table {
+        width: 100%; /* Full width for the table */
+        font-size: 10px; /* Smaller font size for table */
+        border-collapse: collapse; /* Ensure borders collapse properly */
+        min-width: 600px; /* Set a minimum width to allow scrolling */
+    }
+
+    th, td {
+        padding: 5px; /* Reduced padding for better fit */
+        display: block; /* Stack cells vertically for small screens */
+        text-align: left; /* Align text to the left for better readability */
+    }
+
+    tr {
+        margin-bottom: 10px; /* Space between rows */
+        border: 1px solid #ddd; /* Ensure borders are visible */
+        border-radius: 8px; /* Add rounded corners */
+        background: #fff; /* Ensure the background is white for contrast */
+    }
+
+    th {
+        display: none; /* Hide headers on small screens */
+    }
+
+    td::before {
+        content: attr(data-label); /* Use data-label for responsive labels */
+        font-weight: bold; /* Make labels bold */
+        display: inline-block; /* Display as inline-block for proper formatting */
+        width: 50%; /* Label width */
+        text-transform: capitalize; /* Capitalize labels */
+        font-size: 12px; /* Adjust label font size */
+    }
+
+    img {
+        max-width: 80px; /* Adjusted image size for thumbnails */
+        max-height: 60px; /* Adjusted image height */
+    }
+
+    #home, #add {
+        font-size: 22px; /* Font size adjustments for icons */
+    }
+
+    .pagination-link {
+        padding: 4px 6px; /* Adjusted pagination link size */
+        font-size: 0.85rem; /* Adjusted pagination font size */
+    }
+
+    .pagination-info {
+        font-size: 0.85rem; /* Adjusted pagination info size */
+        text-align: center; /* Center aligned for better presentation */
+    }
+
+    td[data-label="action"] {
+        text-align: center; /* Center align action buttons */
+    }
+}
+
+ 
+   </style>
+</head>
+<body>
+	<header>
+        <div class="container1">
+        	<h1 class="pinfo">Our Inventories</h1>
+            <a  th:href="@{/admin}"><i class="material-icons" id="home">home</i></a>
+			<a th:href="@{/admin/laptops/add}"><i class="material-icons" id="add">add_circle_outline</i></a>
+        </div>
+    </header>
+    
+    <div class="table-responsive">
+    <table>
+        <thead class="table-header">
+            <tr>
+                <tr>
+				 <th>Brand</th>
+                 <th>
+					Model
+				</th>
+                <th>Image</th>
+               
+                <th>Price</th>
+                <th>Stock</th>
+                <th>
+                	Model No</a>
+                </th>
+              <!--   <th>Serial No.</th> -->
+                <th>Specification</th>         	
+                <th>Action</th>
+            	</tr>
+        </thead>
+        <tbody>
+            <tr th:each="laptop : ${listLaptops}">
+            
+            	 <td th:text="${laptop.brand.brandName}"></td> 
+            	 <td th:text="${laptop.laptopName}"></td> 
+            	 
+             	<td><img th:src="@{'/laptopImages/' + ${laptop.imageName}}" alt="Laptop image"></td>
+             		
+             	
+             	 
+             
+              <!--    <td th:text="${laptop.modelNo}"></td> -->
+                <td th:text="'$'+${laptop.price}"></td>
+                <td th:text="${laptop.stock}"></td>
+                <td th:text="${laptop.modelNo}"></td>
+            <td th:text="${laptop.serialNo}"></td> 
+                <td th:text="${laptop.specification}"></td>
+              <!--   <td th:text="${laptop.brand.brandName}"></td>  -->
+               
+                <td><a th:href="@{/admin/laptops/update/{id}(id=${laptop.id})}"><i class="fa-solid fa-pen-to-square" id="update"></i></a>
+                <a th:href="@{/admin/laptops/delete/{id}(id=${laptop.id})}"><i class="fa-regular fa-trash-can" id="delete"></i></a></td>
+            </tr>     
+        </tbody>
+   </table>	
+   </div>
+   <div>
+   		<span th:text="'page ' + (${currentPage}+1) + 'of' + ${totalPages}"></span>
+   </div>
+	
+    
+    	
+    
+    
+   
+</body>
+
+
+</html>

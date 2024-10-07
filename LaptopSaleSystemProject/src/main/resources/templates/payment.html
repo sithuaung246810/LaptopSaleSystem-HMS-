@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button to Show Different Photos</title>
+    <style>
+        #photo {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            display: none; /* Hide the image initially */
+        }
+ 
+        .button-container {
+            margin-top: 20px;
+        }
+ 
+        button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Display Photos at the Same Location</h1>
+    
+    <!-- Initially hidden image placeholder -->
+    <img id="photo" alt="Photo Display Area">
+ 
+    <!-- Buttons to change the photo -->
+    <div class="button-container">
+ 
+        <button onclick="showPhoto('/images/kpay1.jpg')">KBZpay</button>
+        <button onclick="showPhoto('/images/wave1.png')">WavePay</button>
+    </div>
+ 
+    <script>
+        function showPhoto(photo) {
+            var photoElement = document.getElementById('photo');
+            photoElement.src = photo;
+            photoElement.style.display = 'block';  // Show the image when a button is clicked
+        }
+    </script>
+</body>
+</html>
+ 
+ 

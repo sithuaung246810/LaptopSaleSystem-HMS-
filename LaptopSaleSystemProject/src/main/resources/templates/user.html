@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+   <style>
+ .admin, .user, .ban {
+            color: #28a745;
+            cursor: pointer;
+            font-size:18px;
+            border:none;
+            background-color:white;
+        }
+
+		.admin:hover, .user:hover {
+			transform: translateY(-3px);
+		    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+		}
+
+        .user {
+            color: #ffc107;
+        }
+        
+        .ban {
+            color: #dc3545;
+        }
+        
+        .ban:hover {
+        	transform: translateY(-2px);
+    		box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+        }
+        
+.icons {
+    display: flex;
+    max-width:150px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clicked {
+    background-color: white;
+    border-radius: 50%;
+    padding:10px;
+}
+
+.admin.clicked {
+    border: 2px solid green;
+}
+
+.user.clicked {
+    border: 2px solid yellow;
+}
+
+.ban.clicked {
+    border: 2px solid red;
+}
+
+
+   
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          
+        }
+
+        div span {
+            font-size: 15px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        table {
+		    width: 80%;
+		    margin: 20px auto;
+		    border-collapse: collapse;
+		    background: #fff;
+		    border-radius: 12px;
+		    overflow: hidden;
+		    margin-top:120px;
+		    margin-bottom:30px;
+		    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+		}
+		
+		.table-header {
+		    background:#ccccff;
+		    color: #fff;
+		    margin-top:20px;
+		}
+		
+		td {
+		    padding: 10px;
+		    text-align: left;
+		    border-bottom: 1px solid #ddd;
+		    transition: background 0.3s;
+		    color:black;
+		    height: 60px;
+		}
+		
+		th {
+		    font-weight: bold;
+		    font-size:18px;
+		    text-align:left;
+		    padding:10px;
+		    color:black;
+		    height: 70px;
+		}
+
+        #admin{
+            margin-right: 10px;
+            color: #28a745;
+            cursor: pointer;
+            font-size:18px;
+            padding:8px;
+            border:none;
+        }
+		#admin:hover {
+			transform: translateY(-3px);
+		    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+		}
+	
+		 #user{
+            margin-right: 10px;
+            color: #ffc107;
+            cursor: pointer;
+            font-size:18px;
+            padding:8px;
+            border:none;
+        }
+        
+        #ban {
+             margin-right: 10px;
+            color: #dc3545;
+            cursor: pointer;
+            font-size:18px;
+            padding:8px;
+            border:none;
+         
+        }
+        
+        #ban:hover {
+        	transform: translateY(-2px);
+    		box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+	button {
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 5px 5px;
+	}
+	
+	  form {
+         /*    background: #ffffff; */
+            padding: 20px;
+            border-radius: 12px;
+          /*   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+            display: inline-block;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f8f8f8;
+            transition: border-color 0.3s ease;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        select:hover {
+            border-color: #6e45e2;
+        }
+
+        select:focus {
+            border-color: #6e45e2;
+            box-shadow: 0 0 8px rgba(110, 69, 226, 0.3);
+        }
+
+        /* Styling for better appearance on mobile devices */
+   
+        
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+
+            select {
+                width: 100%;
+            }
+            
+            
+            
+        }
+        
+        
+/* Pagination Container */
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 10px;
+}
+
+.pagination-info {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination-link {
+    color: #6e45e2;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background:#ccccff;
+    transition: background 0.3s, color 0.3s;
+}
+
+.pagination-link:hover {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.current {
+    background: #6e45e2;
+    color: #fff;
+}
+
+.pagination-link.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+#search {
+	width: 200px;
+	height: 30px;
+	border-radius:10px;
+	margin-left: 12px;
+}
+
+#searchb {
+	width: 80px;
+	height: 40px;
+	border-radius:20px;
+	border-color: white;
+	color: white;
+	background: linear-gradient(160deg, #88d3ce, #6e45e2);
+}
+
+#back {
+	margin-top:3px;
+    font-size: 32px;
+    position:absolute;
+    left:3%;
+    color:white;
+}
+
+form {
+	margin-left: 88px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pagination-info {
+        font-size: 0.9rem;
+    }
+
+    .pagination-link {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsive adjustments for phones */
+/* Responsive adjustments for phones */
+@media (max-width: 480px) {
+    header {
+        padding: 15px 0; /* Adjust padding for the header */
+    }
+
+    .table-responsive {
+        width: 100%; /* Full width for the responsive table wrapper */
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    table {
+        width: 100%; /* Full width for the table */
+        font-size: 10px; /* Smaller font size for table */
+        border-collapse: collapse; /* Ensure borders collapse properly */
+        min-width: 600px; /* Set a minimum width to allow scrolling */
+    }
+
+    th, td {
+        padding: 5px; /* Reduced padding for better fit */
+        display: block; /* Stack cells vertically for small screens */
+        text-align: left; /* Align text to the left for better readability */
+    }
+
+    tr {
+        margin-bottom: 10px; /* Space between rows */
+        border: 1px solid #ddd; /* Ensure borders are visible */
+        border-radius: 8px; /* Add rounded corners */
+        background: #fff; /* Ensure the background is white for contrast */
+        
+    }
+
+    th {
+        display: none; /* Hide headers on small screens */
+    }
+
+    td::before {
+        content: attr(data-label); /* Use data-label for responsive labels */
+        font-weight: bold; /* Make labels bold */
+        display: inline-block; /* Display as inline-block for proper formatting */
+        width: 50%;
+        text-transform: capitalize; /* Capitalize labels */
+        font-size: 12px; /* Adjust label font size */
+    }
+
+    img {
+        max-width: 80px; /* Adjusted image size for thumbnails */
+        max-height: 60px; /* Adjusted image height */
+    }
+
+    #home, #add {
+        font-size: 22px; /* Font size adjustments for icons */
+    }
+
+    .pagination-link {
+        padding: 4px 6px; /* Adjusted pagination link size */
+        font-size: 0.85rem; /* Adjusted pagination font size */
+    }
+
+    .pagination-info {
+        font-size: 0.85rem; /* Adjusted pagination info size */
+        text-align: center; /* Center aligned for better presentation */
+    }
+
+    td[data-label="action"] {
+        text-align: center; /* Center align action buttons */
+    }
+}
+#roleFilter {
+	width: 110px;
+	background-color: #f1fdfb;
+	font-size:12px;
+} 
+#closed {
+	width:200px;
+}
+tr td {
+	height: 60px;
+}
+th a:hover {
+	text-decoration: none;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+   	margin-bottom:15px;
+    text-align: left;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+ 
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ 
+.profile-details p {
+  font-size: 16px;
+  color: #333;
+  text-transform: none;
+}
+    </style>
+</head>
+<body>
+    <header>
+       <!--  <div class="container1">
+        	<div><a th:href="@{/admin}"><i class="fa-regular fa-circle-left" id="back"></i></a></div>
+        	<h1 class="pinfo">User List</h1>
+        	
+            <div><a th:href="@{/admin}"><i class="material-icons" id="home">home</i></a></div>
+           
+           
+            <a th:if="${adminRole == 'ROLE_OWNER'}" th:href="@{/admin/users/add}" ><i class="material-icons" id="add">add_circle_outline</i></a>
+        	
+        </div> -->
+        
+           <div th:replace="fragments/adminNavbar :: navbar"></div>
+        
+    </header>
+<!-- <table>
+    <thead>
+        <tr>
+            <th><a th:href="@{'/admin/users?page=1&sortField=id&sortDir=' + ${reverseSortDir}}">ID</a></th>
+            <th><a th:href="@{'/admin/users?page=1&sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+            Add other columns and sorting as needed
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            Other columns
+        </tr>
+    </tbody>
+</table> -->
+
+
+    
+       <table>
+            <tr class="table-header">
+                <th id="closed1"><a th:href="@{'/admin/users?page=1&sortField=id&sortDir=' + ${reverseSortDir}}">ID</a></th>
+            	<th id="closed1" ><a th:href="@{'/admin/users?page=1&sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+                <th id="closed" >Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <form id="one" th:action="@{/admin/users}" method="get">	
+                <th id="closed" >Role
+                			      
+			        <select id="roleFilter" name="role" onchange="this.form.submit()">
+			            <option value="ALL" th:selected="${selectedRole == 'ALL'}">ALL ROLES</option>
+			            <option id="one" th:each="role : ${roles}" th:value="${role}" th:text="${#strings.replace(role, 'ROLE_', '')}" th:selected="${selectedRole == role}"></option>
+			        </select>
+			 
+                </th>
+                </form>
+                <th th:if="${adminRole == 'ROLE_ADMIN'}"><span id="mid">Actions</span></th>
+                 <th th:if="${adminRole == 'ROLE_OWNER'}"><span id="mid">Actions</span></th>
+            </tr>
+            <tr th:each="user :${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}" ></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.address}"></td>
+            <!--     <td th:text="${user.role}"></td> -->
+                <td th:text="${#strings.replace(user.role, 'ROLE_', '')}" th:if="${user.role== 'ROLE_ADMIN'}" style="color:#28a745;"></td>
+                <td th:text="${#strings.replace(user.role, 'ROLE_', '')}" th:if="${user.role== 'ROLE_USER'}" style="color:#ffc107;"></td>
+                <td th:text="${#strings.replace(user.role, 'ROLE_', '')+'NED USER'}" th:if="${user.role== 'ROLE_BAN'}" style="color:red;"></td>
+                <td th:text="${#strings.replace(user.role, 'ROLE_', '')}" th:if="${user.role== 'ROLE_OWNER'}" style="color:blue;"></td>
+             
+                
+                <td th:if="${adminRole == 'ROLE_ADMIN'}">
+             
+                <!-- 	<div class="icons" >
+                	<a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='ADMIN')}">
+                    <button class="icon admin"  th:if="${user.role != 'ROLE_OWNER' && user.role != 'ROLE_ADMIN'}"><i class="fas fa-user-cog"></i></button>
+                    </a>  -->
+                    
+                       <a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='USER')}">
+	                    <button class="icon user" th:if="${user.role != 'ROLE_OWNER' && user.role != 'ROLE_ADMIN'}"><i class="fas fa-user"></i></button>
+	                    </a>
+	                    
+	                    <a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='BAN')}">
+	                    <button class="icon ban" th:if="${user.role != 'ROLE_OWNER' && user.role != 'ROLE_ADMIN'}"><i class="fas fa-user-slash"></i></button>
+	                    </a>
+	                    
+                    </div>
+                </td>
+    
+	                <td th:if="${adminRole == 'ROLE_OWNER'}"> 
+	                	<div class="icons">
+	                	<a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='ADMIN')}">
+	                    <button class="icon admin" th:if="${user.role != 'ROLE_OWNER'}" ><i class="fas fa-user-cog"></i></button>
+	                    </a>
+	                    
+	                     <a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='USER')}">
+	                    <button class="icon user" th:if="${user.role != 'ROLE_OWNER'}"><i class="fas fa-user"></i></button>
+	                    </a>
+	                    
+	                    <a th:href="@{/admin/users/updateRole/{id}/{role}(id=${user.id}, role='BAN')}">
+	                    <button class="icon ban" th:if="${user.role != 'ROLE_OWNER'}"><i class="fas fa-user-slash"></i></button>
+	                    </a>
+	                    </div>
+	                </td>
+	           
+
+            </tr>
+        </table>  
+     
+<!--         <nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + (${currentPage - 1}) + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+        </li>
+        
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
+            th:classappend="${i == currentPage} ? 'active'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + ${i} + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+               th:text="${i}"></a>
+        </li>
+         <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/admin/users?page=' + ${i} + '&size=5'}" class="pagination-link">[[${i}]]</a>
+                <span th:unless="${currentPage != i}" class="pagination-link current">[[${i}]]</span>
+            </span>
+        
+        <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + (${currentPage + 1}) + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+        </li>
+    </ul>
+</nav> -->
+</center>
+<div th:if="${totalPages > 1}" class="pagination-container">
+    <div class="pagination-controls">
+        <span>Total Rows: [[${totalItems}]] &nbsp; &nbsp;</span>
+
+        <!-- Previous -->
+        <span>
+            <a th:if="${currentPage > 1}" th:href="@{'/admin/users?page=' + ${currentPage-1} + '&size=5'}" class="pagination-link">
+                <i class="fa-solid fa-backward-fast" id="backward"></i>
+            </a>
+            <span th:unless="${currentPage > 1}" class="pagination-link disabled">
+                <i class="fa-solid fa-backward-fast" id="backward"></i>
+            </span>
+        </span>
+
+            <span th:each="i : ${#numbers.sequence(1, totalPages-1)}">
+                <a th:if="${currentPage != i}" th:href="@{'/admin/users?page=' + ${i} + '&size=5'}" class="pagination-link">[[${i}]]</a>
+                <span th:unless="${currentPage != i}" class="pagination-link current">[[${i}]]</span>
+            </span>
+
+        <span>
+            <a th:if="${currentPage != totalPages}" th:href="@{'/admin/users?page=' + ${totalPages} + '&size=5'}" class="pagination-link">[[${totalPages}]]</a>
+            <span th:unless="${currentPage != totalPages}" class="pagination-link current">[[${totalPages}]]</span>
+        </span>
+
+        <!-- Next -->
+        <span>
+            <a th:if="${currentPage < totalPages}" th:href="@{'/admin/users?page=' + ${currentPage+1} + '&size=5'}" class="pagination-link">
+                <i class="fa-solid fa-forward-fast" id="forward"></i>
+            </a>
+            <span th:unless="${currentPage < totalPages}" class="pagination-link disabled">
+                <i class="fa-solid fa-forward-fast" id="forward"></i>
+            </span>
+        </span>
+
+        <span>&nbsp; &nbsp; Page [[${currentPage}]] of [[${totalPages}]]</span>
+    </div>
+</div>
+
+
+  
+    <script type="text/javascript">
+    // Function to toggle "clicked" class and remove from others
+    function toggleClick(clickedButton, buttons) {
+        buttons.forEach(function(button) {
+            if (button !== clickedButton) {
+                button.classList.remove('clicked');
+            }
+        });
+        clickedButton.classList.toggle('clicked');
+        
+        // Save the clicked role to localStorage
+        const role = clickedButton.getAttribute('data-role');
+        localStorage.setItem('selectedRole', role);
+    }
+
+    // Add event listeners to all icon buttons
+    document.querySelectorAll('.icons').forEach(function(iconRow) {
+        const adminButton = iconRow.querySelector('.admin');
+        const userButton = iconRow.querySelector('.user');
+        const banButton = iconRow.querySelector('.ban');
+
+        const buttons = [adminButton, userButton, banButton];
+
+        // Add click events for each button
+        adminButton.addEventListener('click', function() {
+            toggleClick(adminButton, buttons);
+        });
+        userButton.addEventListener('click', function() {
+            toggleClick(userButton, buttons);
+        });
+        banButton.addEventListener('click', function() {
+            toggleClick(banButton, buttons);
+        });
+    });
+
+    // On page load, check localStorage and apply the "clicked" class
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const selectedRole = localStorage.getItem('selectedRole');
+        if (selectedRole) {
+            const buttonToClick = document.querySelector(`button[data-role="${selectedRole}"]`);
+            if (buttonToClick) {
+                // Find the parent row and apply the "clicked" class
+                const iconRow = buttonToClick.closest('.icons');
+                const buttons = iconRow.querySelectorAll('button');
+                toggleClick(buttonToClick, buttons);
+            }
+        }
+    });
+    
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+:root {
+    --primary-color: hsl(330,87%,17%) !important;
+    --secondary-color: hsla(203,100%,13%,1) !important;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 100% !important;
+    background-color:#D4edf3 !important;
+    margin: 0 !important;
+}
+
+main {
+    background-color:#D4edf3   !important;
+}
+
+/* Start Header */
+header {
+    background-position: center !important;
+    background-attachment: fixed !important;
+    margin-top: 70px !important;
+    position: relative !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.navbar {
+    background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color)) !important;
+    padding: 10px 20px !important;
+    transition: all .7s !important;
+    color: #fff !important;
+}
+
+.navmenus {
+    background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color)) !important;
+    padding: 5px 30px !important;
+    color: white !important;
+}
+
+.menuitems {
+    color: #eeee !important;
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    font-weight: normal !important;
+}
+
+.menuitems:hover {
+    color: lightblue !important;
+}
+
+.menuitems .nav-tag {
+    overflow: hidden !important;
+}
+
+.lines1, .lines2, .lines3 {
+    width: 25px !important;
+    height: 3px !important;
+    margin: 6px !important;
+    transition: all .5s !important;
+}
+
+.crossxs .lines1 {
+    transform: rotate(-60deg) translate(-2px, 2px) !important;
+}
+
+.crossxs .lines2 {
+    opacity: 0 !important;
+}
+
+.crossxs .lines3 {
+    transform: rotate(60deg) translate(-2px, -2px) !important;
+}
+
+.navbar-nav {
+    position: relative !important;
+    display: flex !important;
+}
+
+.navbar-nav li.active {
+    color: white !important;
+}
+
+.dropdown-content {
+    display: none !important;
+    position: absolute !important;
+    top: 50px !important;
+    right: 20% !important;
+    background-color: transparent !important;
+    min-width: 100px !important;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2) !important;
+    z-index: 1 !important;
+    border-radius: 5px !important;
+    margin-top: 30px !important;
+}
+
+.dropdown-content a {
+    color: white !important;
+    padding: 10px 10px !important;
+    text-decoration: none !important;
+    display: block !important;
+    border-bottom: 1px solid #444 !important;
+}
+
+.dropdown-content a:hover {
+    background-color: skyblue !important;
+}
+
+.loginbtn {
+    font-size: 38px !important;
+    color: #eeee !important;
+}
+
+.avatarNav {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50% !important;
+    margin-left: 20px !important;
+    margin-right: 30px !important;
+}
+
+#cart {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    
+}
+
+.cart-badge {
+    background-color: red !important;
+    color: white !important;
+    border-radius: 50% !important;
+    padding: 2px 8px !important;
+    font-size: 14px !important;
+    position: absolute !important;
+    top: 10px !important;
+    right: 1px !important;
+    transform: translate(50%, -50%) !important;
+    display: inline-block !important;
+}
+
+ /* Profile Card Styling */
+.profile-card {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 70px;
+  
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+        .avatarNav img {
+            width: 100%;
+            height: 100%;  
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .avatarNav i {
+            font-size: 40px;
+        }
+
+        .avatarNav-initial {
+            font-size: 22px;
+            font-weight: bold;
+            color: #eeee;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            margin-top: 0px;
+        }
+        .avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+   background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #555;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+
+  
+}
+
+.avatar-initial {
+  font-size: 40px;
+  margin-top: 15px;
+  color: #fff;
+   background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.btnedit {
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+	width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#edit{
+    font-size: 20px;
+    color:blue !important;
+}
+
+.profile-body {
+  margin-top: 20px;
+}
+
+.profile-details p {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #333;
+   text-transform: none;
+}
+
+.sync-status {
+  margin-top: 10px;
+}
+
+.sync-status button {
+ background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 0;
+}
+
+.sync-status button a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.sync-status small {
+  display: block;
+  color: red;
+}
+
+
+.sync-status button:hover{
+  transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+    
+}
+
+.sync-status button a:hover {
+	color: white;
+	font-weight: bold;
+	}
+
+        .nav-link {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #eeee;
+            position: relative;
+        }
+
+        .nav-link.active {
+            color: steelblue !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: steelblue;
+        }
+        
+        #loginBtn:focus {
+		    outline: none;
+		}

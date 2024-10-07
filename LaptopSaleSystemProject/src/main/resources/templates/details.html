@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMS Laptop Sales</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+        :root{
+            --primary-color: hsl(330,87%,17%);
+            --secondary-color: hsla(203,100%,13%,1);
+        }
+
+        body{
+            font-family: 'Source Sans Pro', sans-serif;
+            width: 100%;
+            background-color: lightblue;
+        }
+        main{
+        	background-color: lightblue;
+        }
+
+        /* Start Header */
+        header {
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 80px;
+            position: relative;
+            
+        }
+
+        /* Start nav bar */
+        .navbar {
+            background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color));
+            padding: 10px 20px;
+            transition: all .7s;    
+        }
+
+        .menuitems {
+            color: #eeee;
+            font-size: 14px;
+            letter-spacing: 1px;
+            
+        }
+
+        .menuitems:hover {
+            color: lightblue;
+        }
+
+        .lines1, .lines2, .lines3 {
+            width: 25px;
+            height: 3px;
+            margin: 6px;
+            transition: all .5s;
+        }
+
+        .crossxs .lines1 {
+            transform: rotate(-60deg) translate(-2px,2px);
+        }
+
+        .crossxs .lines2 {
+            opacity: 0;
+        }
+
+        .crossxs .lines3 {
+            transform: rotate(60deg) translate(-2px,-2px);
+        }
+
+       	#humburger{
+       		color:white;
+       	}
+        /* Responsive menu icon animation */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .dropdown-content {
+                top: 50px;
+                right: 0;
+            }
+
+            .menuitems {
+                margin: 10px 0;
+            }
+        }
+        
+        
+        .product-filter .btn {
+		    margin-bottom: 10px;
+		}
+		
+		
+		.featured-products {
+		    padding: 50px;
+		    text-align: center;
+		    background-color: #f9f9f9;
+		    background-color: lightblue;
+		}
+		
+		.featured-products h2 {
+		    font-size: 32px;
+		    margin-bottom: 40px;
+		}
+		
+		.product-grid {
+		    display: flex;
+		    justify-content: space-around;
+		    flex-wrap: wrap;
+		}
+		
+		.product {
+		    background-color: white;
+		    padding: 20px;
+		    border-radius: 15px;
+		    text-align: center;
+		    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		    width: 250px;
+		    margin-bottom: 20px;
+		}
+		
+		.product img {
+		    width: 150px;
+		    height: 120px;
+		    margin-bottom: 20px;
+		    
+		    transition:transform .2s;
+		   
+		}
+		
+		.product img:hover{
+			transform:scale(1.3);
+		}
+		
+		.product h3 {
+		    font-size: 18px;
+		    margin-bottom: 10px;
+		}
+		
+		.product p {
+		    font-size: 16px;
+		    margin-bottom: 15px;
+		}
+		
+		.btn{
+			background:none; 
+			font-size: 10px;
+			color: #6e45e2;
+			border:1px solid #6e45e2;
+			border-radius:10px;
+			padding:10px 20px;
+			text-transform: uppercase;
+			cursor: pointer;
+			font-weight:bold;
+		
+
+		}
+
+		.btn span {
+		  cursor: pointer;
+		  display: inline-block;
+		  position: relative;
+		  transition: 0.5s;
+		  
+		}
+ 
+		.btn span:after {
+		  content: '\00bb';
+		  position: absolute;
+		  opacity: 0;
+		  top: 0;
+		  right: -20px;
+		  transition: 0.5s;
+		  
+		}
+ 
+		.btn:hover span {
+		  padding-right: 20px;
+		}
+		
+		.btn:hover span:after {
+		  opacity: 1;
+		  right: 0;
+		}
+		
+		.product .btn:hover {
+		    background:  linear-gradient(135deg, #6e45e2, #88d3ce);
+		}
+		
+		
+		.laptop-grid {
+		    display: grid;
+		    grid-template-columns: repeat(42, 1fr);
+		    gap: 20px;
+        }
+        
+        .laptop-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .laptop-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+        
+        .choice {
+         
+        border-radius: 5px;
+        position: absolute;
+        left: 0;
+        margin-right: 20px;
+        margin-top: 20px;
+	    }
+	    label {
+	        margin-right: 10px;
+	    }
+	    
+
+/* Footer */
+
+ .footer {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), var(--secondary-color));
+    clear: both;
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    color:white;
+    justify-content: center;
+}
+
+.footer-div1,
+.footer-div2,
+.footer-div3
+{
+    width: 300px;
+    height: auto;
+    margin: 20px;
+}
+
+.footer-div4 {
+	width:200px;
+}
+
+.footer-div1 br,
+.footer-div2 p,
+.footer-div4 h4 {
+    margin-top: 20px;
+}
+
+.footer-div3 h4{
+	margin-top: 5px;
+}
+.footer-div1 h2,
+.footer-div1 h5 {
+    text-align: center;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 20px;
+    text-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+    animation-name: footerani;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+/* Animation */
+@keyframes footerani {
+    from {
+        transform: rotate(5deg);
+    }
+    to {
+        transform: rotate(-5deg);
+    }
+}
+
+/* Contact Us Section */
+.contactus {
+    width: 90%;
+    font-size: 14px;
+    margin-bottom:20px;
+}
+
+.contactus a {
+    text-decoration: none;
+}
+
+/* Follow Us Section */
+.followus {
+    font-size: 14px;
+}
+
+.followus a {
+    width: 80px;
+    height: 80px;
+}
+
+.payment-icons img {
+    margin: 5px;
+}
+
+.footer-div5 {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-div5 h6,
+.footer-div5 p {
+    color: white;
+}
+
+/* Responsive layout */
+
+ 
+ @media only screen and (max-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+ 	
+  
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+ 
+ 
+ 
+/* Animation */
+ 
+.footer-div1 h2,h5{
+			text-align: center;
+			color: #fff;
+			
+			letter-spacing: 3px;
+			line-height: 20px;
+			text-shadow: 0 10px 5px rgba(0,0,0,0.5);
+ 
+			animation-name: footerani;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+			animation-direction: alternate;
+ 
+		}
+ 
+		@keyframes footerani{
+			from{
+				transform: rotate(5deg);
+			}
+ 
+			to{
+				transform: rotate(-5deg);
+			}
+		}
+ 
+ 
+/* End Footer*/
+    </style>
+</head>
+<body>
+    <!-- Start Header Section -->
+    <header>
+        <div th:replace="fragments/navbar :: navbar"></div>
+    </header>
+
+    <!-- End Header Section -->
+    <main>
+     <section class="choice container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <form th:action="@{/laptop}" method="get">
+				    <label for="brandFilter" class="form-label">Choose Laptop Brand:</label>
+				    <select id="brandFilter" name="brand" class="form-select" onchange="this.form.submit()">
+				        <option value="ALL" th:selected="${selectedBrand == 'ALL'}">All Laptops</option>
+				        <option th:each="brand : ${brands} " th:if="${brand.deleted == false}"
+				                th:value="${brand.brandName}" 
+				                th:text="${brand.brandName}" 
+				                th:selected="${selectedBrand == brand.brandName}">
+				        </option>
+				    </select>
+				</form>
+
+            </div>
+        </div>
+    </section>
+    
+    <section class="featured-products">
+ 
+           <h2 th:text="${selectedBrand == 'ALL' ? 'All Laptops' : selectedBrand + ' Laptops'}"></h2>
+ 
+            <div class="product-grid">
+ 
+                <div th:each="laptop : ${laptops}" class="product" th:if="${laptop.deleted == false}">
+ 
+                    <img th:src="@{'/images/' + ${laptop.imageName}}" alt="Product Image" width="450" height="400" onError="this.onerror=null;this.src='https://via.placeholder.com/200';">
+ 
+                    <h3 th:text="${laptop.laptopName}">Laptop Model</h3>
+ 
+                    <p th:text="${'$' + laptop.price}">Price</p>
+ 
+                    <a th:href="@{/laptop/{id}(id=${laptop.id})}" class="btn">See Details</a>
+ 
+                </div>                 
+ 
+            </div>
+ 
+        </section>
+        </main>
+        
+        
+       <!-- Contact Us Section -->
+<div class="footer" id="footer">
+    <div class="footer-div1">
+        <h2>HMS <br/><h5> LAPTOP SALES </h5></h2>
+    </div>
+
+    <div class="footer-div2">
+        <h4><b>ABOUT US</b></h4>
+        <p>Welcome to HMS Laptop Sales, your trusted source for high-quality laptops at competitive prices. Whether you're a student, professional, or tech enthusiast, we have the perfect laptop to meet your needs. With a commitment to reliability, affordability, and innovation, we strive to be your go-to destination for all things laptops. Explore our collection and let us help you stay connected, productive, and ahead of the curve.</p>
+    </div>
+
+    <div class="footer-div3" id="footer-div3">
+        <div class="contactus">
+            <h4 style="margin-bottom:18px;"><b>CONTACT US</b></h4>
+            <div id="contact-info" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <a href="#" class="text-white me-3" id="row">
+                    <i class="fas fa-map-marker-alt" id="addicon"></i>
+                    <p id="info" style="margin: 0; text-align: justify;">Myawaddy Luxury Bank Complex, Corner of Bogyoke Aung San & Warden St, Lanmadaw Township, Yangon</p>
+                </a>
+                <a href="#" class="text-white me-3" style="margin-bottom:8px;">
+                    <i class="far fa-envelope"></i> hmslaptopsale@gicjp.com
+                </a>
+                <a href="#" class="text-white">
+                    <i class="fa-solid fa-phone-volume"></i> +959-123-456-789
+                </a>
+            </div>
+        </div>
+
+        <div class="followus">
+            <h4><b>FOLLOW US</b></h4>
+            <div class="social-icons">
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-telegram-plane fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-div4">
+        <div class="payment">
+            <h4><b>Payment Methods</b></h4>
+            <br/>
+            <div class="payment-icons" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <img src="images/master.png" alt="" width="42" height="42"/>
+                <img src="images/visa.png" alt="" width="42" height="42"/>
+                <img src="images/cb.png" alt="" width="42" height="42"/>
+                <img src="images/aya.png" alt="" width="42" height="42"/>
+                <img src="images/kpay.png" alt="" width="42" height="42"/>
+                <img src="images/wave.png" alt="" width="42" height="42"/>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="footer-div5">
+        <h6>Pay on Invoice | Terms & Conditions | Cookie Policy | Sitemap | Accessibility Statement </h6>
+        <p>&copy; Copyright 2024 HMS Laptop Sale, Y60 : 22390</p>
+    </div>
+</div>
+        
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

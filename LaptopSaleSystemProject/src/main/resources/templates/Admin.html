@@ -1,0 +1,560 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="
+		https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+		integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+	<title>Admin Home</title>
+    <style>
+    
+    /* test */
+/* Banner */
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+.hero {
+    background-image: url('/laptopImages/llogo2.png');
+    background-size: cover;
+    background-position:center;
+    height: 100%;
+    width:100%;
+    display:flex;
+    align-items: center;
+    position: relative;
+}
+ 
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+ 
+.hero .card-container {
+    position: relative; /* Ensure text is above the overlay */
+    margin: auto;
+}
+ 
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn-light {
+    font-weight: 600;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+ 
+.hero .btn-light:hover {
+    color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-decoration:none;
+}
+ 
+h2{
+	text-align:center;
+	font-weight:bold;
+}
+#welcome{
+	margin-top:50px;
+}
+
+.dashboard{
+	display: flex;
+    justify-content: space-around;    
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.dashboard-icon{
+	gap: 20px;
+    padding: 20px;
+    width: 180px;
+    height:150px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	overflow: hidden;
+    color: #fff;
+   
+}
+
+.dashboard-icon2{
+
+	 margin-top:10px;
+}
+
+.dashboard-icon i{
+	font-size: 40px;
+}
+
+.dashboard-icon p{
+	font-size: 20px;
+	margin:0;
+}
+
+.dashboard-icon .ani{
+	animation:myani 1.4s linear infinite;
+}
+
+@keyframes myani{
+			0%{
+				transform:scale(1);
+			}
+
+			25%{
+				transform:scale(1);
+			}
+
+			30%{
+				transform:scale(1.4);
+			}
+
+			50%{
+				transform:scale(1.2);
+			}
+
+			75%{
+				transform:scale(1.4);
+			}
+
+			100%{
+				transform:scale(1);
+			}
+		}
+
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    width: 1400px;
+    height:300px;    
+    gap: 20px;
+}
+ 
+.card{
+	
+	background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.card .imgbox{
+			width: 100%;
+			height: 100%;
+		}
+
+.imgbox img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: all 0.5s;
+		}
+
+.card .content{
+			width: 100px;
+			height: 10px;
+			background-color: red;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			
+			transition: all 0.5s;
+		}
+
+	.card .content h4{
+			text-transform: uppercase;
+			margin-top: 10px;
+  		 	margin-bottom: 10px;
+  		 	font-size: 15px;
+    		color: green;			
+		}
+
+	.card .content p{
+			width: 80%;
+			font-size: 16px;
+			margin:10px auto;
+			color:black;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+
+	.card .content .action-button{
+			text-decoration: none;
+			background: linear-gradient(135deg, #6e45e2, #88d3ce);
+			color: #fff;
+			border: none;
+			font-size: 16px;
+			padding:10px 20px;
+			border-radius: 10px;
+			/* display: inline-block; */
+			cursor: pointer;
+			margin-top: 10px;
+			display:flex;
+   		 	align-items: center;
+  		 	justify-content: center;  		  
+			opacity: 0;
+			transition: background 0.3s ease, transform 0.3s ease;
+			transition: all 0.5s;
+		}
+
+		.card:hover .content{
+			width:100%;
+			height: 100%;
+			padding: 40px;
+			left: 0;
+		}
+
+		.card:hover p,.card:hover  .action-button{
+			opacity: 1;
+			transition-delay: 0.5s;
+		}
+
+		.card:hover .imagbox img{
+			opacity: 0;
+		}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+    text-decoration: none;    
+	transform: scale(0.8);	
+}
+ 
+a{
+	color:white;
+}
+#navbar1{
+	align-items:right;
+}
+
+/* test */
+.card{
+	background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;	
+	position: relative;
+	overflow: hidden;
+		}
+
+	.card .content{
+			width: 80%;
+			height: 80px;
+			background-color: #fff;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			left: 10%;
+			transition: all 0.5s;
+		}
+
+	.card .content h4{
+			text-transform: uppercase;
+			font-size: 20px;
+			margin-top: 20px;
+  		 	margin-bottom: 20px;
+    		color: #333;			
+		}
+
+	.card .content p{
+			width: 80%;
+			font-size: 16px;
+			margin:10px auto;
+			color:black;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+
+	.card .content .action-button{
+			text-decoration: none;
+			background-color: #000;
+			color: #fff;
+			font-size: 14px;
+			padding:10px 15px;
+			display: inline-block;
+			margin-top: 10px;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+
+		.card:hover .content{
+			width:100%;
+			height: 100%;
+			left: 0;
+		}
+
+		.card:hover p,.card:hover  .action-button{
+			opacity: 1;
+			transition-delay: 0.5s;
+		}
+
+		.card .imgbox{
+			width: 100%;
+			height: 100%;
+		}
+
+		.imgbox img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: all 0.5s;
+		}
+
+		.card:hover .imagbox img{
+			opacity: 0;
+		}
+
+.content h4 b {
+	text-decoration: none;
+}
+
+.action-button a:hover {
+	text-decoration: none;
+}
+
+.copyright{
+	width:100%;
+	height:50px;
+	margin:30px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#countdown, #countdownB, #countdownP, #countdownA, #countdownU, #countdownBan {
+            font-size: 20px;
+            color:white;
+        }
+ #ic{
+ 	font-size:35px;
+ } 
+</style>
+</head>
+<body>
+	<!-- Start Header Section -->
+	<header>
+		 <div th:replace="fragments/adminNavbar :: navbar"></div>
+   </header>
+ 
+        <section class="hero">
+        
+            <div class="card-container text-center text-white">
+                <h2 class="display-4" id="welcome">Welcome Admins to</h2>
+                <h2 class="display-4">HMS Laptop Sales Co.,Ltd</h2>
+                <p class="lead">At HMS, our mission is to provide our customers with top-of-the-line laptops and exceptional service, all from the comfort of their own homes.</p>
+
+		  	<div class="dashboard">
+		  		<div class="dashboard-icon">	
+		  				<i class="fa-solid fa-laptop" id="ic"></i>
+		  				<div>
+			  				<p><span id="countdown">0</span>+</p>
+			  				<p>Laptops</p>
+		  				</div>
+		  		</div>
+		        
+		        <div class="dashboard-icon">		
+		  				<i class="material-icons">dvr</i>
+		  				<div>
+			  				<p><span id="countdownB">0</span>+</p>
+							<p>Brands</p>
+						</div>
+		        </div>
+		        
+		        <div class="dashboard-icon">
+		  				<i class="material-icons">shop</i>
+		  				<div>
+			  				<p><span id="countdownP">0</span>+</p>	
+			  				<p>Purchases</p>
+			  			</div>
+		    	</div>
+		    	
+		    	<div class="dashboard-icon">
+		  				<i class="fa-solid fa-users-gear"  id="ic"></i>
+		  				<div class="dashboard-icon2">
+			  				<p><span id="countdownA">0</span>+</p>
+			  				<p>Admins</p>
+			  			</div>
+		    	</div>
+		    	
+		    	<div class="dashboard-icon">
+		  				<i class="fa-solid fa-users"  id="ic"></i>
+		  				<div class="dashboard-icon2">
+		  					<p><span id="countdownU">0</span>+</p>
+		  					<p>Users</p>
+		  				</div>
+		    	</div>
+		  			  		
+		  		<div class="dashboard-icon">
+		  				<i class="fa-solid fa-users-slash" id="ic"></i>
+		  				<div class="dashboard-icon2">
+		  					<p><span id="countdownBan">0</span>+</p>
+		  				     <p>Banned Users</p>
+		  				  </div>
+		    	</div>
+		  	</div>
+		  
+		  	<div class="container1">
+		  	
+		  		<div class="card add-laptop">
+		  			<div class="imgbox">
+		  				<img src="/images/laptop.png" alt="menu"/>
+		  			</div>
+		  			<div class="content">
+			            <h4><b>Manage Your Laptops</b></h4>
+			            <p>Manage your products here. Add new laptops to keep your relevant details inventory updated.</p>
+		  				<button class="action-button"> <a href="#" th:href="@{/admin/laptops}">Manage Laptops</a></button>
+		       	    </div>
+		  		</div>
+		        
+		        <div class="card add-brand">
+		  			<div class="imgbox">
+		  				<img src="/images/brand.png" alt="menu"/>
+		  			</div>
+		            <div class="content">
+			            <h4><b>Manage Your Brands</b></h4>
+			            <p>Manage your product brands here. Add new brands to keep your relevant details inventory updated.</p>
+			            <button class="action-button"> <a th:href="@{/admin/brandlist}">Manage Brands</a></button>
+		            </div>
+		        </div>
+		        
+		        <div class="card purchase-list">
+		  			<div class="imgbox">
+		  				<img src="/images/purchase.jpg" alt="menu"/>
+		  			</div>
+		        	<div class="content">
+			            <h4><b>View Purchase History</b></h4>
+			            <p>View and manage the list of all purchases. Keep track of transactions and order statuses.</p>
+			            <button class="action-button"> <a href="#" th:href="@{/admin/historys}">Purchase History</a></button>
+		        	</div>
+		    	</div>
+		    	<div class="card user-list">
+		  			<div class="imgbox">
+		  				<img src="/images/user.png" alt="menu"/>
+		  			</div>
+		        	<div class="content">
+			            <h4><b>Manage Users</b></h4>
+			            <p>View and manage the list of all purchases. Keep track of transactions and order statuses.</p>
+			            <button class="action-button"> <a th:href="@{/admin/users}">Manage Users </a></button>
+		        	</div>
+		    	</div>
+            </div>
+            
+            <div class="copyright">
+		  		<h6>Pay on Invoice | Terms & Conditions | Cookie Policy | Sitemap | Accessibility Statement </h6>
+       		    <small>&copy; Copyright 2024 HMS Laptop Sale, Y60 : 22390</small>
+		  	</div>
+		  	
+		  	</div>
+           
+        </section>
+
+ <script>
+        let count = 0;
+        let count1 = 0;
+        let count2 = 0;
+        let count3 = 0;
+        let count4 = 0;
+        let count5 = 0;
+        // Replace this with the value dynamically from the server-side
+        const maxCountL =  [[${lcount}]];
+   
+ 
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval = setInterval(() => {
+            if (count < maxCountL) {
+                count++;
+                document.getElementById('countdown').textContent = count;
+            } else {
+                clearInterval(interval); // Stop the interval once maxCount is reached
+            }
+        }, 60);
+        
+        const maxCountB =  [[${bcount}]];
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval1 = setInterval(() => {
+            if (count1 < maxCountB) {
+                count1++;
+                document.getElementById('countdownB').textContent = count1;
+            } else {
+                clearInterval(interval1); // Stop the interval once maxCount is reached
+            }
+        }, 100);
+        
+        const maxCountP =  [[${pcount}]];
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval2 = setInterval(() => {
+            if (count2 < maxCountP) {
+                count2++;
+                document.getElementById('countdownP').textContent = count2;
+            } else {
+                clearInterval(interval2); // Stop the interval once maxCount is reached
+            }
+        }, 100);
+        const maxCountU =  [[${ucount}]];
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval3 = setInterval(() => {
+            if (count3 < maxCountU) {
+                count3++;
+                document.getElementById('countdownU').textContent = count3;
+            } else {
+                clearInterval(interval3); // Stop the interval once maxCount is reached
+            }
+        }, 100);
+        const maxCountA =  [[${acount}]];
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval4 = setInterval(() => {
+            if (count4 < maxCountA) {
+                count4++;
+                document.getElementById('countdownA').textContent = count4;
+            } else {
+                clearInterval(interval4); // Stop the interval once maxCount is reached
+            }
+        }, 600);
+        const maxCountBan =  [[${bancount}]];
+        // Set an interval to simulate the countdown (or count-up in this case)
+        const interval5 = setInterval(() => {
+            if (count5 < maxCountBan) {
+                count5++;
+                document.getElementById('countdownBan').textContent = count5;
+            } else {
+                clearInterval(interval5); // Stop the interval once maxCount is reached
+            }
+        }, 600);
+        </script>
+ 
+     
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

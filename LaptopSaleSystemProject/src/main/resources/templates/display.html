@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Details</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+<style>
+/* General Styles */
+
+ @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+        :root{
+            --primary-color: hsl(330,87%,17%);
+            --secondary-color: hsla(203,100%,13%,1);
+        }
+
+        
+        main{
+        	
+        	background-color: #f1fdfb;
+        	
+        }
+
+        /* Start Header */
+        header {
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 80px;
+            position: relative;
+            
+        }
+
+        /* Start nav bar */
+        .navbar {
+            background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color));
+            padding: 10px 20px;
+            transition: all .7s;    
+        }
+
+        .menuitems {
+            color: #eeee;
+            font-size: 15px;
+            letter-spacing: 1px;
+            
+        }
+
+        .menuitems:hover {
+            color: lightblue;
+        }
+
+        .lines1, .lines2, .lines3 {
+            width: 25px;
+            height: 3px;
+            margin: 6px;
+            transition: all .5s;
+        }
+
+        .crossxs .lines1 {
+            transform: rotate(-60deg) translate(-2px,2px);
+        }
+
+        .crossxs .lines2 {
+            opacity: 0;
+        }
+
+        .crossxs .lines3 {
+            transform: rotate(60deg) translate(-2px,-2px);
+        }
+
+       	#humburger{
+       		color:white;
+       	}
+        /* Responsive menu icon animation */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .dropdown-content {
+                top: 50px;
+                right: 0;
+            }
+
+            .menuitems {
+                margin: 10px 0;
+            }
+        }
+        
+        
+        .product-filter .btn {
+		    margin-bottom: 10px;
+		}
+		
+		
+		.featured-products {
+		    padding: 50px;
+		    text-align: center;
+		    background-color: #f9f9f9;
+		    background-color: lightblue;
+		}
+		
+		.featured-products h2 {
+		    font-size: 32px;
+		    margin-bottom: 40px;
+		}
+		
+		.product-grid {
+		    display: flex;
+		    justify-content: space-around;
+		    flex-wrap: wrap;
+		}
+		
+		.product {
+		    background-color: white;
+		    padding: 20px;
+		    border-radius: 15px;
+		    text-align: center;
+		    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		    width: 250px;
+		    margin-bottom: 20px;
+		}
+		
+		.product img {
+		    width: 150px;
+		    height: 120px;
+		    margin-bottom: 20px;
+		    
+		    transition:transform .2s;
+		   
+		}
+		
+		.product img:hover{
+			transform:scale(1.3);
+		}
+		
+		.product h3 {
+		    font-size: 18px;
+		    margin-bottom: 10px;
+		}
+		
+		.product p {
+		    font-size: 16px;
+		    margin-bottom: 15px;
+		}
+		
+		.btn{
+			background:none; 
+			font-size: 10px;
+			color: #6e45e2;
+			border:1px solid #6e45e2;
+			border-radius:10px;
+			padding:10px 20px;
+			text-transform: uppercase;
+			cursor: pointer;
+			font-weight:bold;
+		
+
+		}
+
+		.btn span {
+		  cursor: pointer;
+		  display: inline-block;
+		  position: relative;
+		  transition: 0.5s;
+		  
+		}
+ 
+		.btn span:after {
+		  content: '\00bb';
+		  position: absolute;
+		  opacity: 0;
+		  top: 0;
+		  right: -20px;
+		  transition: 0.5s;
+		  
+		}
+ 
+		.btn:hover span {
+		  padding-right: 20px;
+		}
+		
+		.btn:hover span:after {
+		  opacity: 1;
+		  right: 0;
+		}
+		
+		.product .btn:hover {
+		    background:  linear-gradient(135deg, #6e45e2, #88d3ce);
+		}
+		
+		
+		.laptop-grid {
+		    display: grid;
+		    grid-template-columns: repeat(42, 1fr);
+		    gap: 20px;
+        }
+        
+        .laptop-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .laptop-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+        
+        .choice {
+         
+        border-radius: 5px;
+        position: absolute;
+        left: 0;
+        margin-right: 20px;
+        margin-top: 20px;
+	    }
+	    label {
+	        margin-right: 10px;
+	    }
+
+main {
+    font-family: 'Arial', sans-serif;
+
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+}
+
+header {
+    
+    color: #fff;
+    padding: 22px 0;
+    border-top-right-radius: 10px;
+    margin-bottom: 30px;
+}
+
+header .container1 {
+    display: flex;
+}
+
+header .pinfo {
+    margin: 0;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#home {
+    margin-top: 3px;
+    font-size: 35px;
+    position: absolute;
+    right: 3%;
+}
+
+
+.laptop-details {
+    display: flex;
+    gap: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.laptop-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    position: center;
+}
+
+.laptop-info {
+    flex: 1;
+}
+
+.laptop-info h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.price {
+    font-size: 20px;
+    color: #e60023;
+    margin: 0px 0;
+}
+
+.specs {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.specs li {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.specs i {
+    margin-right: 10px;
+    color: #007BFF;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.buy-now, .add-to-cart {
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.buy-now i, .add-to-cart i {
+    margin-right: 8px;
+}
+
+.buy-now:hover, .add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+}
+
+.add-to-cart {
+    background: linear-gradient(160deg, #88d3ce, #6e45e2);
+}
+
+.add-to-cart:hover {
+    background: #88d3ce;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.quantity-button {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-text {
+    margin: 0 10px;
+    font-size: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+footer {
+    background: #f1f1f1;
+    padding: 45px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    margin-bottom: 0;
+}
+
+.out-of-stock-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.out-of-stock-message i {
+    font-size: 30px;
+    margin-right: 10px;
+    color: #dc3545;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .laptop-details {
+        flex-direction: column;
+        align-items: center; /* Center the content horizontally */
+        padding: 20px;
+        text-align: center; /* Center text on tablet screens */
+    }
+
+    .laptop-info h2 {
+        text-align: center; /* Center-align title on smaller screens */
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center; /* Center buttons horizontally */
+        gap: 10px;
+        width: 100%; /* Make buttons full-width on smaller screens */
+    }
+
+    .buy-now, .add-to-cart {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .laptop-details {
+        flex-direction: column;
+        align-items: center; /* Center the content horizontally */
+        padding: 20px;
+        text-align: center; /* Center text on smaller screens */
+    }
+
+    .laptop-info h2 {
+        font-size: 24px;
+        text-align: center; /* Center-align title on smaller screens */
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .specs li {
+        font-size: 14px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center; /* Center buttons horizontally */
+        gap: 5px;
+        width: 100%; /* Full-width buttons on phone screens */
+    }
+
+    .buy-now, .add-to-cart {
+        padding: 10px;
+        font-size: 14px;
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+</style>
+
+
+</head>
+<body>
+    <header >
+        <div th:replace="fragments/navbar :: navbar"></div>
+    </header>
+ 
+    <main>
+        <div class="container">
+            <section class="laptop-details">
+                <div class="laptop-image">
+                    <img th:src="@{'/laptopImages/' + ${laptop.imageName}}" alt="Laptop Image" width="350">
+                </div>
+                <div class="laptop-info">
+                    <h2 th:text="${laptop.laptopName}"></h2>
+                    
+                    <ul class="specs">
+                    	<li><p class="price" th:text="${'$' + laptop.price}">Price</p></li>
+                        <li><i class="material-icons">laptop</i><p th:text="${laptop.modelNo}"></p></li>
+                        <li><i class="material-icons">badge</i><p th:text="${laptop.brand.brandName}">Brand Name</p></li>
+                       
+                        <li><i class="material-icons">category</i><p th:text="${laptop.stock}"></p></li>
+ 
+                        <li><i class="material-icons">screen_share</i>Specifications:</li>
+                     </ul>
+                        <ul>
+                            <li th:each="spec : ${laptop.formattedSpecifications}" th:text="${spec}"></li>
+                        </ul>
+                     <div th:if="${laptop.stock > 0}">
+	                    
+				
+					<div class="quantity-container">
+					    <h3>Quantity :</h3>
+					
+					    <input type="number" class="quantity-text" id="quantityInput" value="1" min="1" th:max="${laptop.stock}">
+					</div>
+					
+					<div class="actions">
+					<form th:action="@{'/purchase/' + ${laptop.id}}" method="get">					  
+					        <button type="submit" class="buy-now" th:disabled="${laptop.stock == 0}">
+					            <i class="material-icons">shopping_cart</i> Buy Now
+					        </button>
+					      
+					        <input type="hidden" name="quantity" id="quantityBuyNow">
+					</form>
+							
+					<form th:action="@{'/cartitem/'}" method="get">
+					        <button type="submit" class="add-to-cart" th:disabled="${laptop.stock == 0}">
+					            <i class="material-icons">add_shopping_cart</i> Add to Cart
+					        </button>
+					        <input type="hidden" name="laptopId" th:value="${laptop.id}">
+					        <input type="hidden" name="quantity" id="quantityAddToCart">
+					</form>
+ 
+					</div>
+ 
+					<script>
+					
+					    const quantityInput = document.getElementById('quantityInput');
+					
+					
+					    const quantityBuyNow = document.getElementById('quantityBuyNow');
+					    const quantityAddToCart = document.getElementById('quantityAddToCart');
+					
+					
+					    function syncQuantity() {
+					        const quantityValue = quantityInput.value;
+					        quantityBuyNow.value = quantityValue;
+					        quantityAddToCart.value = quantityValue;
+					    }
+					
+					    quantityInput.addEventListener('input', syncQuantity);
+					
+					    syncQuantity();
+					    
+					    
+				        fetch('navbar.html')
+				            .then(response => response.text())
+				            .then(data => {
+				                document.getElementById('navbar').innerHTML = data;
+				            });
+				    
+					</script>
+ 
+                    </div>
+                    <div th:if="${laptop.stock == 0}" class="out-of-stock-message">
+                        <i class="material-icons">warning</i>
+                        <p>Sorry, this item is <strong>Out of Stock</strong>.</p>
+                    </div>
+            </section>
+        </div>
+    </main>
+ 
+ 
+</body>
+</html>

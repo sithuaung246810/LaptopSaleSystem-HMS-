@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        main {
+        	margin-top: 140px;
+            font-family: Arial, sans-serif;
+            background-color: #f1fdfb;
+            
+        }
+
+         header {
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 80px;
+            position: relative;
+            
+        }
+        #home {
+            margin-top: 3px;
+            font-size: 35px;
+            position: absolute;
+            right: 3%;
+        }
+
+        .shopping-cart {
+        
+            border-radius: 10px;
+            display: flex;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left {
+            width: 40%;
+            padding: 10px;
+        }
+
+        .photo img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        /* Add scroll container */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-width: 600px; /* minimum width to allow scrolling on small screens */
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            margin-left: 250px;
+        }
+		.center-algin {
+            text-align: center;
+        }
+        .quantity {
+            text-align: center;
+        }
+        .confirm-button, .add-more {
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: white;
+            border: 0px solid white;
+            cursor: pointer;
+        }
+
+        .confirm-button i, .add-more i {
+            margin-right: 8px;
+        }
+
+        .confirm-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+            background: #88d3ce;
+        }
+
+        .add-more {
+            background: linear-gradient(160deg, #88d3ce, #6e45e2);
+        }
+
+        .add-more:hover {
+            background: #88d3ce;
+        }
+
+        .total {
+            align-items: flex-end;
+        }
+
+        .price {
+            font-size: 18px;
+        }
+
+        #cancel {
+            color: red;
+            font-size: 22px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .shopping-cart {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .left {
+                width: 100%;
+                text-align: center;
+            }
+
+            .container {
+                width: 80%;
+            }
+
+            .actions {
+                margin-left: 0;
+                justify-content: center;
+            }
+            
+            .photo img {
+                max-width: 50%;
+            }
+
+            .confirm-button, .add-more {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            #cancel{
+            	font-size:17px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1.pinfo {
+                font-size: 24px;
+            }
+
+            .shopping-cart {
+                padding: 5px;
+            }
+
+            .left {
+                width: 100%;
+            }
+
+            .photo img {
+                max-width: 50%;
+            }
+            
+            .table-responsive {
+                max-width: 100%;
+            }
+
+            .actions {
+                flex-direction: column;
+                margin-left: 0;
+            }
+
+            .confirm-button, .add-more {
+                width: 50%;
+                font-size: 14px;
+                padding: 5px;
+            }
+
+            table th, table td {
+                font-size: 16px;
+            }
+
+            /* Hide columns for smallest screens */
+            table td:nth-child(1), 
+            table th:nth-child(1),
+            table td:nth-child(6),
+            table th:nth-child(6) {
+                display: none;
+            }
+
+            .price {
+                font-size: 14px;
+            }
+            
+            .img {
+                max-width: 10%;
+            }
+
+            #home {
+                font-size: 28px;
+            }
+            
+            .container {
+                width: 100%;
+                margin: 0;
+            }
+
+            #cancel {
+                font-size: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div th:replace="fragments/navbar :: navbar"></div>
+    </header>
+<main>
+    <div class="shopping-cart">
+        <div class="left">
+            <div class="photo">
+                <img src="/images/c1.png" alt="Product Photo">
+            </div>
+        </div>
+        <div class="container">
+            <h2>Your Shopping Cart</h2>
+            <div class="table-responsive">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Model</th>
+                        <th>Unit Price</th>
+                        <th >Quantity</th>
+                        <th>Total Price</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="item : ${cartItems}">
+                        <td><img th:src="@{'/laptopImages/' + ${item.image}}" alt="Laptop Image" width="100"></td>
+                        <td><p th:text="${item.modelNo}"></p></td>
+                        <td><p th:text="'$' +${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></p></td>
+                        <td><p th:text="${item.quantity}"></p></td>
+                        <td><p th:text="'$' + ${#numbers.formatDecimal(item.price * item.quantity, 1, 'COMMA', 2, 'POINT')}"></p></td>
+                        <td>
+                            <form th:action="@{/removeFromCart}" method="post">
+                <input type="hidden" name="laptopId" th:value="${item.laptopId}"/>
+	            <button class="btn"><i class="material-icons" id="cancel">cancel</i></button>
+	          </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th class="price">Total:</th>
+                        <th class="price" th:text="'$' + ${#numbers.formatDecimal(totalPrice, 1, 'COMMA', 2, 'POINT')}"></th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="actions">
+                <form th:action="@{'/purchase/cart'}" method="get">
+                    <input type="hidden" name="cartItem" th:value="${item}"/>
+                    <button type="submit" class="confirm-button">
+                        <i class="material-icons">check_circle</i> Buy Now
+                    </button>
+                </form>
+                <form th:action="@{'/laptop'}" method="get">
+                    <button type="submit" class="add-more">
+                        <i class="material-icons">add_circle</i> Add More
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>
+</html>

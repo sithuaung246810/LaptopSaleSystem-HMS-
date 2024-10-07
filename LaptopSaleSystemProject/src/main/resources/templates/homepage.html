@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMS Laptop Sales</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+ 
+:root{
+	/*hue-saturation-lightness-alpha*/
+	--primary-color: hsl(330,87%,17%);
+	--secondary-color: hsla(203,100%,13%,1);
+}
+ 
+body{
+	font-family: 'Source Sans Pro', sans-serif;
+	width:100%;
+}
+ 
+/*Start Header*/
+ 
+header{
+	height: 100vh;
+	background: linear-gradient(
+		30deg,
+		rgba(0,0,0,0),
+		rgba(0,0,0,0.5)
+		),url('/laptopImages/llogo2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+ 
+	position: relative;
+}
+ 
+/*Start nav bar*/
+ 
+.navbar{
+	background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color));
+	padding: 10px 20px;
+	transition: all .7s;
+	color:white;	
+}
+ 
+.navmenus{
+	background: linear-gradient(rgba(0,0,0,0.6),var(--secondary-color));
+	padding: 5px 30px;
+	color:white;
+}
+
+/*
+#cart{
+	padding-top:5px;
+}
+*/
+
+.menuitems{
+	color: #eeee;
+	font-size: 14px;
+	letter-spacing: 1px;
+	font-weight:normal;
+	margin-left:10px !important;
+}
+
+.menuitems:hover{
+	color: lightblue;
+}
+ 
+.menuitems .nav-tag{
+	overflow:hidden;
+}
+ 
+.lines1,.lines2,.lines3{
+	width: 25px;
+	height: 3px;
+	margin: 6px;
+ 
+	transition: all .5s;
+}
+ 
+.crossxs .lines1{
+	transform: rotate(-60deg) translate(-2px,2px);
+}
+ 
+.crossxs .lines2{
+	opacity: 0;
+}
+ 
+.crossxs .lines3{
+	transform: rotate(60deg) translate(-2px,-2px);
+}
+
+/* dropdown menu bar*/
+
+.navbar-nav{
+	position: relative;
+	display:flex;
+}
+
+.navbar-nav li.active{
+    color:white;
+    
+}
+
+.dropdown-content {
+       display: none;
+       position: absolute;
+       top: 50px;
+       right: 20%;
+       background-color: transparent;
+       min-width: 100px;
+       box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+       z-index: 1;
+       border-radius: 5px;
+       margin-top: 30px;
+}
+
+.dropdown-content a {
+        color: white;
+        padding: 10px 10px;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #444;
+}
+ 
+.dropdown-content a:hover {
+        background-color: skyblue;
+}
+.loginbtn{
+	font-size: 38px;
+	color: #eeee;
+	
+}
+
+/* Profile Card Styling */
+.profile-card {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 70px;
+  
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatarNav{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+
+#cart {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 25px !important;
+}
+
+.cart-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 14px;
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    transform: translate(50%, -50%);
+    display: inline-block;
+    
+}
+
+.avatarNav img {
+  width: 100%;
+  height: 100%;  
+  object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatarNav i {
+	font-size: 40px;
+}
+
+.avatarNav-initial {
+  font-size: 22px;
+  font-weight: bold;
+	color: #eeee;
+  background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  margin-top: 0px;
+  
+}
+
+.avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+   background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #555;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+
+  
+}
+
+.avatar-initial {
+  font-size: 40px;
+  font-weight: bold ;
+  color: #fff;
+   background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.btnedit {
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+	width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#edit{
+    font-size: 20px;
+}
+
+.profile-body {
+  margin-top: 20px;
+}
+
+.profile-details p {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+   text-transform: none;
+}
+
+.sync-status {
+  margin-top: 10px;
+}
+
+.sync-status button {
+ background: linear-gradient(135deg, #6e45e2, #88d3ce);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto 0;
+}
+
+.sync-status button i {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.sync-status small {
+  display: block;
+  color: red;
+}
+.sync-status button:hover{
+  transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+}
+.sync-status button a:hover{
+	color:white;
+	font-weight: bold;
+}
+
+.nav-link {
+      margin-right: 20px;
+      text-decoration: none;
+      color: #eeee;
+      
+      position: relative;
+    }
+.nav-link.active {
+      color: steelblue !important;
+      font-size: 16px;
+      font-weight: bold;
+      
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: steelblue;
+    }
+
+/*End nav bar*/
+ 
+/*Start Banner */
+
+.banners{
+	width: 100%;
+ 
+	position: absolute;
+	left: 50%;
+	top: 50%;
+ 
+	transform: translate(-50%,-50%);
+}
+ 
+.banners .bannerheaders{
+	animation-name: bananni;
+	animation-duration: 2s;
+}
+ 
+.bannerheaders ul{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	flex-wrap: wrap;
+	
+}
+ 
+.bannerheaders ul li{
+	 color: white;
+	 font-weight: bold;
+	 letter-spacing: 3px;
+	 animation:myani 3.0s linear infinite;	
+	 font-size: 4vw;
+}
+		
+.bannerheaders ul li span{
+			padding: 10px;
+		}
+ 
+@keyframes myani{
+	0%{
+		color: white;
+		text-shadow: none;
+	}
+ 
+	90%{
+		 color: white;
+		 text-shadow: none;
+	}
+ 
+	100%{
+		 color: gold;
+		 text-shadow: 0 0 7px gold,0 0 50px silver;
+	}
+}
+ 
+		ul li:nth-child(1){
+			animation-delay: 0s;
+		}
+		ul li:nth-child(2){
+			animation-delay: 0.1s;
+		}
+		ul li:nth-child(3){
+			animation-delay: 0.2s;
+		}
+		ul li:nth-child(4){
+			animation-delay: 0.3s;
+		}
+		ul li:nth-child(5){
+			animation-delay:0.4s;
+		}
+		ul li:nth-child(6){
+			animation-delay: 0.5s;
+		}
+		ul li:nth-child(7){
+			animation-delay: 0.6s;
+		}
+		ul li:nth-child(8){
+			animation-delay: 0.7s;
+		}	
+		ul li:nth-child(9){
+			animation-delay: 0.8s;
+		}		
+		ul li:nth-child(10){
+			animation-delay: 0.9s;
+		}		
+		ul li:nth-child(11){
+			animation-delay: 1.0s;
+		}		
+		ul li:nth-child(12){
+			animation-delay: 1.1s;
+		}	
+		ul li:nth-child(13){
+			animation-delay: 1.2s;
+		}		
+		ul li:nth-child(14){
+			animation-delay: 1.3s;
+		}		
+		ul li:nth-child(15){
+			animation-delay: 1.4s;
+		}
+		ul li:nth-child(16){
+			animation-delay: 1.5s;
+		}
+		ul li:nth-child(17){
+			animation-delay: 1.6s;
+		}
+		ul li:nth-child(18){
+			animation-delay: 1.7s;
+		}
+		ul li:nth-child(19){
+			animation-delay: 1.8s;
+		}
+		ul li:nth-child(20){
+			animation-delay: 1.9s;
+		}
+		ul li:nth-child(21){
+			animation-delay: 2.0s;
+		}
+		ul li:nth-child(22){
+			animation-delay: 2.1s;
+		}
+		ul li:nth-child(23){
+			animation-delay: 2.2s;
+		}
+		ul li:nth-child(24){
+			animation-delay: 2.3s;
+		}
+		ul li:nth-child(25){
+			animation-delay: 2.4s;
+		}
+		ul li:nth-child(26){
+			animation-delay: 2.5s;
+		}
+		ul li:nth-child(27){
+			animation-delay: 2.6s;
+		}
+		ul li:nth-child(28){
+			animation-delay: 2.7s;
+		}
+		ul li:nth-child(29){
+			animation-delay: 2.8s;
+		}
+		ul li:nth-child(30){
+			animation-delay: 2.9s;
+		}
+		ul li:nth-child(31){
+			animation-delay: 3.0s;
+		}
+		ul li:nth-child(32){
+			animation-delay: 3.1s;
+		}
+		ul li:nth-child(33){
+			animation-delay: 3.2s;
+		}
+		ul li:nth-child(34){
+			animation-delay: 3.3s;
+		}
+		ul li:nth-child(35){
+			animation-delay: 3.4s;
+		}
+ 
+.bannerparagraphs{
+	animation-name: bananni;
+	animation-duration: 2s;
+	animation-delay: 1s;
+ 
+	animation-fill-mode: backwards;
+}
+
+@keyframes bananni{
+	0%{
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+ 
+	}
+}
+ 
+.btn-explore{
+	background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    padding: 10px 20px;
+   	border-radius:10px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align:center;
+    
+}
+ 
+/*End Banner*/
+ 
+/*End Header*/
+
+/*Start About Us*/
+
+.aboutuss{
+	width:100%;
+	background: linear-gradient(
+		rgba(0,0,0,0.3),
+		rgba(0,0,0,0.3)
+		),url('/laptopImages/llogo2.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+
+	position: relative;
+}
+
+.aboutuss .lines{
+	width: 30%;
+	height: 1.2px;
+	background-color: #fff;
+	margin-bottom: 3px;
+}
+
+.aboutuss .lines:nth-of-type(2){
+	width: 20%;
+	height: 1px;
+}
+
+.aboutuss .lines:nth-of-type(3){
+	width: 10%;
+	height: 0.5px;
+	margin-bottom: 30px;
+}
+
+
+.aboutuss h6{
+	background-color: #fff;
+	color: #000;
+	border-left: 5px solid red;
+	text-align: left;
+	margin: 30px 0;
+	padding: 10px;
+	
+}
+
+.aboutuss h6 ~ p{
+	text-align: left;
+	margin: 30px 0;
+	font-size:15px;
+}
+
+#btn-more{
+	background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    padding: 10px 20px;
+    border:1px solid #6e45e2;
+   	border-radius: 15px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align:center;
+    
+}
+
+.aboutuss img{
+	width: 350px;
+	position: absolute;
+	bottom: 0;
+}
+
+.aboutuss .div1{
+    padding-left: 150px;
+	
+}
+
+
+
+
+/*End About Us*/
+
+
+ 
+ 
+/*Latest Products*/
+ 
+.latest-products {
+    padding: 30px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+ 
+.latest-products h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+ 
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+ 
+.latest-product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin-bottom: 20px;
+}
+ 
+.latest-product img {
+    width: 150px;
+    height: 120px;
+    margin-bottom: 20px;  
+}
+ 
+.flip-box {
+  background-color: transparent;
+  width: 150px;
+  height: 120px;
+ 
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+ 
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+ 
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+  
+}
+ 
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+ 
+/* Style the front side */
+.flip-box-front {
+  padding-left:30px;
+}
+ 
+/* Style the back side */
+.flip-box-back {
+  
+  padding-left:60px;
+  transform: rotateY(180deg);
+}
+ 
+.latest-product h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+ 
+.latest-product p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+ 
+.latest-product .btn-detail,.mt-4 .btnseemore{
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    font-weight:bold;
+    font-size: 13px;
+	border-radius:5px;
+	padding:15px 20px;
+	text-transform: uppercase;
+	cursor: pointer;
+    text-decoration: none;
+   
+    text-align:center;
+    position:relative;
+    
+			
+}
+ 
+.btn-detail::before{
+	content:'';
+	width: 28px;
+	height: 28px;
+	
+	position: absolute;
+	top:-5px;
+	left:-5px;
+	
+	border-top:1px solid  #88d3ce;
+	border-left:1px solid  #88d3ce;
+	
+	transition:all 0.4s;
+	
+}
+ 
+.btn-detail::after{
+	content:'';
+	width: 28px;
+	height: 28px;
+	
+	position: absolute;
+	bottom:-5px;
+	right:-5px;
+	
+	border-right:1px solid #6e45e2;
+	border-bottom:1px solid #6e45e2;
+	
+	transition:all 0.4s;
+	
+}
+ 
+.latest-product .btn-detail:hover::before,.btn-detail:hover::after {
+    
+    width:100%;
+    height:100%;
+ 
+}
+ 
+.laptop-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+.laptop-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+       
+.laptop-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+/*End Latest Products*/
+ 
+ 
+/* Featured Products */
+ 
+.featured-products {
+background:linear-gradient(180deg, #c2e2ef, #ced2dc);
+padding:30px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+ 
+.featured-products h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+ 
+.product-grid2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+ 
+.featured-product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin-bottom: 20px;
+    
+    position:relative;
+    overflow:hidden;
+    
+}
+ 
+.featured-product img {
+    width: 150px;
+    height: 120px;
+    margin-bottom: 20px;  
+    
+    transition: all 0.3s;
+}
+ 
+.featured-product .caption {
+	width:100%;
+	height:40%;
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ 
+    color: #fff;
+    background-color: #000;
+ 
+    transform: translateY(100%);
+ 
+    transition: all 0.3s;
+}
+ 
+ 
+.featured-product .caption h3{
+ 
+    text-transform: uppercase;
+	font-size: 15px;
+    margin:0;
+ 
+    padding-right: 10px;
+}
+ 
+.featured-product .caption p{
+ 
+    text-transform: capitalize;
+           
+    font-size: 15px;
+ 
+    padding-left: 10px;
+}
+ 
+.featured-product:hover .caption{
+ 
+    transform: translateY(0%);
+ 
+}
+ 
+.featured-product:hover img{
+ 
+    transform: translateY(-30%);
+       
+}
+ 
+ 
+.laptop-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+.laptop-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+       
+.laptop-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+/* End Featured Products*/  
+ 
+/* See More*/     
+.mt-4 a{
+	width:200px;
+	height: 50px ;    
+    background-color: linear-gradient(135deg, #6e45e2, #88d3ce);
+  
+    color: black;
+    padding: 10px 20px;
+   	
+    text-decoration: none;
+    font-weight: 500;
+    text-align:center;
+    line-height:50px;
+   
+    
+  }
+        
+/* End See More*/
+ 
+/* About Us*/
+ 
+.aboutus{
+ 
+	background-color : lightyellow;
+	width:100%;
+	height: 700px;
+ 
+}
+ 
+/* End About Us */
+ 
+/* footer */
+ 
+ .footer {
+    width: 100%;
+    height: auto;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), var(--secondary-color));
+    clear: both;
+    padding: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    color:white;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.footer-div1,
+.footer-div2,
+.footer-div3
+{
+    width: 300px;
+    height: auto;
+    margin: 20px;
+}
+
+.footer-div4 {
+	width:200px;
+}
+
+.footer-div1 br,
+.footer-div2 p,
+.footer-div4 h4 {
+    margin-top: 20px;
+}
+
+.footer-div3 h4{
+	margin-top: 5px;
+}
+.footer-div1 h2,
+.footer-div1 h5 {
+    text-align: center;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 20px;
+    text-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+    animation-name: footerani;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.footer p{
+	font-size:15px;
+}
+
+/* Animation */
+@keyframes footerani {
+    from {
+        transform: rotate(5deg);
+    }
+    to {
+        transform: rotate(-5deg);
+    }
+}
+
+/* Contact Us Section */
+.contactus {
+    width: 90%;
+    font-size: 14px;
+    margin-bottom:20px;
+}
+
+.contactus a {
+    text-decoration: none;
+}
+
+/* Follow Us Section */
+.followus {
+    font-size: 14px;
+}
+
+.followus a {
+    width: 80px;
+    height: 80px;
+}
+
+.payment-icons img {
+    margin: 5px;
+}
+
+.footer-div5 {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-div5 h6,
+.footer-div5 p {
+    color: white;
+}
+
+/* Responsive layout */
+
+ 
+ @media only screen and (max-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+ 	
+  
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+ 
+ 
+ 
+/* Animation */
+ 
+.footer-div1 h2,h5{
+			text-align: center;
+			color: #fff;
+			
+			letter-spacing: 3px;
+			line-height: 20px;
+			text-shadow: 0 10px 5px rgba(0,0,0,0.5);
+ 
+			animation-name: footerani;
+			animation-duration: 3s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+			animation-direction: alternate;
+ 
+		}
+ 
+		@keyframes footerani{
+			from{
+				transform: rotate(5deg);
+			}
+ 
+			to{
+				transform: rotate(-5deg);
+			}
+		}
+ 
+ 
+/* End Footer*/
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+ 
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #04AA6D;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+ 
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+   .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+ 	
+  
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+  
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  	 .side,
+    .middle {
+        width: 80%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+ 
+ 
+/* End Footer*/
+ 
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height */
+    overflow: hidden;
+}
+ 
+#bgVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure video covers the full container */
+    cursor:pointer;
+}
+ 
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    height:300px;
+    width:1000px;
+}
+ 
+h1 {
+    font-size: 3em;
+    font-weight: 700;
+}
+ 
+p {
+    font-size: 1.5em;
+    font-weight: 300;
+    margin-top: 0.5em;
+}
+ 
+.buttons {
+    margin-top: 20px;
+}
+ 
+button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    margin: 10px;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+ 
+button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+ 
+.content #pauseBtn {
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    margin-left:30px;
+    background-color:#f099a2;
+    border-radius:10px;
+    border:1px solid #f099a2;
+}
+ 
+.content #playBtn{
+	position:absolute;
+	right:160px;
+	bottom:10px;
+	background-color:#c2e2ed;
+	border-radius:10px;
+	border:1px solid #c2e2ed;
+	
+}
+ 
+/* info */
+ 
+.info{
+	width:100%;	
+	background-color:#c2e2ed;
+}
+ 
+.info-product .btn-view{
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: white;
+    font-weight:bold;
+    width:100%;
+    font-size: 10px;
+	padding:8px 25px;
+	text-transform: uppercase;
+	cursor: pointer;
+    text-decoration: none;
+    text-align:center;		
+}
+ 
+.info-products {
+    padding: 30px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+ 
+#infop {
+	padding-top:30px;
+    font-size: 38px;
+    margin-bottom: 40px;
+    font-weight:bold;
+    text-align:center;
+}
+ 
+.product-grid2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top:13px;
+}
+ 
+.info-product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin-bottom: 20px;
+}
+ 
+.info-product img {
+    width: 150px;
+    height: 120px;
+    margin-bottom:10%;  
+}
+ 
+.flip-box {
+  background-color: transparent;
+  width: 150px;
+  height: 120px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+ 
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+ 
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+  
+}
+ 
+/* Position the front and back side */
+
+.flip-box-front {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+ 
+.flip-box-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  margin: 0; /* Ensure no extra margin */
+  padding: 0; /* Ensure no extra padding */
+}
+ 
+/* Style the front side */
+.flip-box-front {
+  padding-left:30px;
+}
+ 
+/* Style the back side */
+.flip-box-back {
+  
+  padding-left:60px;
+  transform: rotateY(180deg);
+}
+ 
+.info-product h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+ 
+.info-product p {
+    font-size: 16px;
+    margin-bottom: 15px ;    
+    font-weight: bold;
+}
+ 
+/* dd */
+/* Hidden dropdown menu under "Home" */
+ 
+
+ #info {
+ 	text-align:justify;
+    margin: 0;
+    font-size:15px;
+    margin-top:10px;
+ }
+ 
+ #row {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+    width:300px;
+}
+#para1{
+	font-size:16px;
+}
+</style>
+</head>
+<body>
+ 
+    <!-- Start Header Section -->
+	<header class="header">
+		
+		<!-- Start nav bar -->	
+			<nav class="navbar navbar-expand-md fixed-top">
+				<a href="homepage.html" class="navbar-brand text-light mx-3">
+					<img src="images/favicon.png" width="50px" alt="favicon" class="img-fluid" />
+					<span class="text-uppercase fw-bold h2 mx-1">HMS <span class="h3">LAPTOP SALES</span></span>
+				</a>
+ 
+				<button type="button" class="navbar-toggler navbuttons" data-bs-toggle="collapse" data-bs-target="#nav">
+					<div class="bg-light lines1"></div>
+					<div class="bg-light lines2"></div>
+					<div class="bg-light lines3"></div>
+				</button>
+ 
+				<div id="nav" class="navbar-collapse collapse justify-content-end text-uppercase fw-bold">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link mx-2 menuitems active" href="#" onclick="toggleDropdown()" id="homeBtn">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link mx-2 menuitems" href="/laptop">ALL LAPTOPS</a></li>
+                        <li class="nav-item"><a class="nav-link mx-2 menuitems" href="#footer">CONTACT US</a></li>
+                                <!-- Replacing the material-icons loginbtn with avatar structure -->
+        <li>
+           <button id="loginBtn" style="display: flex; align-items: center; background: none; border: none; cursor: pointer; margin: 0; padding: 0;" onclick="loginDropdown()">
+    <span class="avatarNav navbar-avatar">
+        <img th:if="${session.profile != null}" th:src="@{'/laptopImages/' + ${session.profile}}" alt="Profile Image" class="loginbtn" />
+        <p th:if="${session.profile == null && session.name != null}" th:text="${#strings.substring(session.name, 0, 1)}" class="avatarNav-initial"></p>
+        <i th:if="${session.profile == null && session.name == null}" class="material-icons loginbtn">account_circle</i>
+    </span>
+</button>
+        </li>
+                        
+                        <li class="nav-item"><a href="/cart"><img src="images/cart.png" alt="Y60 Laptop Sales Logo" width="30" height="40" class="d-inline-block align-top menuitems" id="cart">
+                        <span id="cart-count" class="cart-badge" min="0" th:if="${session.cartItemCount != null}" th:text="${session.cartItemCount}">0</span>
+                        </a> </li>
+					</ul>
+					
+					<!-- Dropdown menu for Home -->
+					<div class="dropdown-content" id="homeDropdown">
+					    <a href="#info-products">Latest Laptop</a>
+					    <a href="#featured-products">Featured Laptop</a>
+					    <a href="#bgVideo">Stream</a>
+					    <a href="#footer">Contact</a>
+					</div>
+					
+					<!-- Profile Card -->
+  <div class="profile-card" id="profileCard">
+
+    <div class="profile-header">
+      <div class="profile">
+      	     
+        <div class="avatar">
+            <!-- If session.profile is not null, display the profile image -->
+            <img th:if="${session.profile != null}" th:src="@{'/laptopImages/' + ${session.profile}}" alt="Profile Image" class="loginbtn" />
+
+            <!-- If session.profile is null, display a default avatar or user's initial -->
+            <p th:if="${session.profile == null && session.name != null}" th:text="${#strings.substring(session.name, 0, 1)}" class="avatar-initial"></p>
+            <i th:if="${session.profile == null && session.name == null}" class="material-icons loginbtn" id="account_circle">account_circle</i>
+        <div class="btnedit" th:if="${session.email != null}" >
+    <a th:href="@{/profileUpdate(email=${session.email})}" id="btnedit">
+        <i class="material-icons btnedit" id="edit">edit</i>
+    </a>
+</div>
+        </div>
+      </div>
+    </div>
+
+<div class="profile-body">
+    <div class="profile-details">
+    	<p th:text="${session.name}"></p>
+        <p th:text="${session.email != null ? session.email : 'Please log in or sign up.'}">Email</p>
+    </div>
+    <div class="sync-status">
+        <small th:if="${session.email == null}">Not Signed in</small>
+        <button>
+            <p th:if="${session.email == null}">
+                <a class="nav-link mx-2 menuitems" href="/login">LOGIN</a>
+            </p>
+            <p class="nav-item" th:if="${session.email != null}">
+                <a class="nav-link mx-2 menuitems" href="/logout">LOGOUT</a>
+            </p>
+        </button>
+    </div>  
+</div>
+
+
+  </div>
+				</div>
+			</nav>
+		<!-- End nav bar -->
+ 
+ 
+		<!-- Start banner -->
+		
+			<div class="text-light text-center banners">
+				<h1 class="display-5 bannerheaders">
+ 					
+				<ul>
+                	<li>W</li>
+                	<li>e</li>
+                	<li>l</li>
+                	<li>c</li>
+                	<li>o</li>
+                	<li>m</li>
+                	<li>e</li>
+                	<li><span></span></li>
+                	<li>t</li>
+                	<li>o</li>
+                	<li><span></span></li>
+                	<li>H</li>
+                	<li>M</li>
+                	<li>S</li>
+                	<li><span></span></li>
+                	<li>L</li>
+                	<li>a</li>
+                	<li>p</li>
+                	<li>t</li>
+                	<li>o</li>
+                	<li>p</li>
+                	<li><span></span></li>
+                	<li>S</li>
+                	<li>a</li>
+                	<li>l</li>
+                	<li>e</li>
+                	<li>s</li>
+                	<li><span></span></li>
+                	<li>C</li>
+                	<li>o</li>
+                	<li>.</li>
+                	<li>,</li>
+                	<li>L</li>
+                	<li>t</li>
+                	<li>d</li>
+                </ul>
+				</h1>
+				 <p class="lead bannerparagraphs">At HMS, our mission is to provide our customers with top-of-the-line laptops and exceptional service, all from the comfort of their own homes.</p>
+                <a href="/laptop" class="btn-explore btn-light btn-lg mt-3">Explore Our Products</a>
+			</div>
+ 
+		<!-- End banner -->
+ 
+	</header>
+	
+	<!-- End Header Section -->
+	
+	
+   <!-- Start About Us Section -->
+	<section id="about" class="py-5 aboutuss">
+		
+		<div class="container">
+			
+			<div class="row">
+				
+				
+				<div class="col-sm-7 text-center text-light div1">
+				
+					<div class="row">
+						
+						<div class="col-md-12">
+							<h2 class="text-uppercase">Welcome to HMS Laptop Sales</h2>
+							<div class="lines"></div>
+							<div class="lines"></div>
+							<div class="lines"></div>
+
+						</div>
+
+						<div class="col-md-12">
+							<h6 class="fst-italic">At HMS Laptop Sales, we are dedicated to bringing the latest and most reliable laptops to your fingertips.</h6>
+							<p>With a passion for technology and a commitment to exceptional customer service, we ensure a seamless shopping experience, offering the best brands at unbeatable prices. Discover the power of performance, quality, and innovation with "HMS Laptop Sales – your trusted partner in technology"</p>
+							<p>Here’s a quick look at some of the newest models:</p>
+							<a href="#info-products" class="btn-danger rounded-0" id="btn-more">View More</a>
+						</div>
+
+					</div>
+					
+				</div>
+				
+				<div class="col-sm-5 div2">
+					<img src="images/g.png" alt="staffgirl1" />
+				</div>
+				
+				
+			</div>
+		</div>
+
+	</section>
+
+	<!-- End About Us Section -->
+   
+   <!-- Latest Products -->
+     
+       <section class="info" id="info-products"><br><br><br>
+            <h2 id="infop">Latest Laptops</h2>
+            <div class="product-grid">
+                <div th:each="laptop : ${latestLaptops}" class="info-product" th:if="${laptop.deleted == false}">
+                
+                	<div class="flip-box">
+						 <div class="flip-box-inner">
+  							  <div class="flip-box-front">
+   								   <img th:src="@{'/laptopImages/' + ${laptop.imageName}}" alt="Product Image" width="300" height="200" onError="this.onerror=null;this.src='https://via.placeholder.com/200';">
+  							  </div>
+   						 	  <div class="flip-box-back">
+    					  		  <img th:src="@{'/laptopImages/' + ${laptop.imageName2}}" alt="Product Image" width="300" height="200" onError="this.onerror=null;this.src='https://via.placeholder.com/200';">
+    						  </div>
+  						</div>
+			 	   </div>
+                    <h3 th:text="${laptop.laptopName}">Laptop Model</h3>
+                    <p th:text="${'$' + laptop.price}">Price</p>
+                    <p>The latest in <span th:text="${laptop.brand.brandName}">Brand Name</span> overflowing <span th:text="${laptop.laptopName}">Laptop Model</span> family skimps a bit on the screen resolution but delivers impressive power, battery life, and convenience for <span th:text="${'$' + laptop.price}">Price</span>.</p>
+                    <a th:href="@{/laptop/{id}(id=${laptop.id})}" class="btn-view">VIEW PRODUCT</a>
+             
+                </div>                 
+            </div>      
+  	  </section>
+     
+     
+ 
+ 
+                
+   	<section class="featured-products" id="featured-products"><br><br>
+            <h2 id="infop">Featured Laptops</h2>
+           
+            
+            <div class="product-grid2">
+                <div th:each="laptop : ${laptops}" class="featured-product" th:if="${laptop.deleted == false}">
+                
+                	<img th:src="@{'/laptopImages/' + ${laptop.imageName}}" alt="Product Image" width="300" height="200" onError="this.onerror=null;this.src='https://via.placeholder.com/200';">
+                    
+                    <div class="caption">
+                    	<h3 th:text="${laptop.laptopName}">Laptop Model</h3>
+                 	    <p th:text="${'$' + laptop.price}">Price</p>
+                    </div>
+                    
+                </div>                 
+            </div>
+            
+    
+            
+             <div class="mt-4">
+                <a href="/laptop" class="btnseemore"><span>See More</span></a>
+            </div>
+            
+    </section>
+    
+     <!-- HHK  -->
+     
+   
+     
+   
+     
+     
+    
+    <!-- About Us -->
+    
+    <div class="aboutus" id="adv">
+                
+       <div class="video-container">
+			<video autoplay loop muted id="bgVideo">
+			<source src="/images/laptop.mp4" type="video/mp4">
+			            Your browser does not support the video tag.
+			</video>
+			<!-- <div class="content">
+			<h1>At the Core of Everything We Do</h1>
+			<p>Creating sustainable products and solutions that drive change.</p>
+			</div>  -->
+	  </div>
+         
+    </div>
+    
+   
+ 
+    <!-- Contact Us -->
+ 
+    <div class="footer" id="footer">
+    <div class="footer-div1">
+        <h2>HMS <br/><h5> LAPTOP SALES </h5></h2>
+    </div>
+
+    <div class="footer-div2">
+        <h4><b>ABOUT US</b></h4>
+        <p>Welcome to HMS Laptop Sales, your trusted source for high-quality laptops at competitive prices. Whether you're a student, professional, or tech enthusiast, we have the perfect laptop to meet your needs. With a commitment to reliability, affordability, and innovation, we strive to be your go-to destination for all things laptops. Explore our collection and let us help you stay connected, productive, and ahead of the curve.</p>
+    </div>
+
+    <div class="footer-div3" id="footer-div3">
+        <div class="contactus">
+            <h4 style="margin-bottom:18px;"><b>CONTACT US</b></h4>
+            <div id="contact-info" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <a href="#" class="text-white me-3" id="row">
+                    <i class="fas fa-map-marker-alt" id="addicon"></i>
+                    <p id="info" style="margin: 0; text-align: justify;">Myawaddy Luxury Bank Complex, Corner of Bogyoke Aung San & Warden St, Lanmadaw Township, Yangon</p>
+                </a>
+                <a href="#" class="text-white me-3" style="margin-bottom:8px;">
+                    <i class="far fa-envelope"></i> hmslaptopsale@gicjp.com
+                </a>
+                <a href="#" class="text-white">
+                    <i class="fa-solid fa-phone-volume"></i> +959-123-456-789
+                </a>
+            </div>
+        </div>
+
+        <div class="followus">
+            <h4><b>FOLLOW US</b></h4>
+            <div class="social-icons">
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-telegram-plane fa-2x"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-div4">
+        <div class="payment">
+            <h4><b>Payment Methods</b></h4>
+            <br/>
+            <div class="payment-icons" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <img src="images/master.png" alt="" width="42" height="42"/>
+                <img src="images/visa.png" alt="" width="42" height="42"/>
+                <img src="images/cb.png" alt="" width="42" height="42"/>
+                <img src="images/aya.png" alt="" width="42" height="42"/>
+                <img src="images/kpay.png" alt="" width="42" height="42"/>
+                <img src="images/wave.png" alt="" width="42" height="42"/>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="footer-div5">
+        <h6>Pay on Invoice | Terms & Conditions | Cookie Policy | Sitemap | Accessibility Statement </h6>
+        <p>&copy; Copyright 2024 HMS Laptop Sale, Y60 : 22390</p>
+    </div>
+</div>
+        
+    
+  
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- custom js -->
+    <script>
+    $(document).ready(function(){
+ 
+    	// Start Header
+ 
+    		// Start nav
+ 
+    		// for button
+    		$(".navbuttons").click(function(){
+    			$(this).toggleClass("crossxs");
+    		});
+ 
+    		// for nav
+    		$(window).scroll(function(){
+    			let getscrolltop=$(this).scrollTop();
+    			console.log(getscrolltop);
+ 
+    			if(getscrolltop >= 200){
+    				$(".navbar").addClass("navmenus");
+    			}else{
+    				$(".navbar").removeClass("navmenus");
+    			}
+    		});
+ 
+    		// End nav
+ 
+    	// End Header
+    	
+    });
+    
+    const video = document.getElementById('bgVideo');
+    
+    // Add a click event listener to toggle play/pause
+    video.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+    
+    
+    // Function to toggle the dropdown menu
+    function toggleDropdown() {
+        const dropdown = document.getElementById("homeDropdown");
+ 
+        // Toggle dropdown visibility
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+ 
+        // Toggle arrow direction
+        arrow.classList.toggle("open");
+    }
+ 
+    // Close dropdown when clicking outside of it
+     $(window).click(function(event) {
+        const dropdown = $('#homeDropdown');
+        const profileCard = $('#profileCard');
+        const homeBtn = $('#homeBtn');
+        const loginBtn = $('#loginBtn');
+
+        // Close "Home" dropdown if clicked outside
+        if (!event.target.matches('#homeBtn') && !homeBtn.has(event.target).length) {
+            dropdown.hide();
+        }
+
+        // Close profile card if clicked outside
+        if (!event.target.matches('#loginBtn') && !loginBtn.has(event.target).length && !profileCard.has(event.target).length) {
+            profileCard.hide();
+        }
+    });
+ 
+ // Function to toggle the visibility of the profile card
+function loginDropdown() {
+    const profileCard = document.getElementById('profileCard');
+    if (profileCard.style.display === 'none' || profileCard.style.display === '') {
+        profileCard.style.display = 'block';
+    } else {
+        profileCard.style.display = 'none';
+    }
+}
+    
+ 
+
+ 
+
+    // Select all navigation links
+const navLinks = document.querySelectorAll('.nav-link');
+
+// Loop through all links and add click event listeners
+navLinks.forEach(link => {
+  link.addEventListener('click', function(event) {
+    // Remove 'active' class from all links
+    navLinks.forEach(l => l.classList.remove('active'));
+    
+    // Add 'active' class to the clicked link
+    this.classList.add('active');
+  });
+});
+ 
+    </script>
+</body>
+</html>

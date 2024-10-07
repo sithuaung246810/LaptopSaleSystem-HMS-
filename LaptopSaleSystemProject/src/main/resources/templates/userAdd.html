@@ -1,0 +1,230 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="./login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+}
+ 
+.container {
+    display: flex;
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+ 
+.signup-form {
+    padding: 60px;
+    background: white;
+    width: 50%;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+ 
+h2 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 28px;
+    color:  #6e45e2;
+}
+ 
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+ 
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color:  #6e45e2;
+    font-size: 18px;
+}
+ 
+.input-group input {
+    width: 100%;
+    padding: 12px 50px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.input-group input:focus {
+    border-color:  #6e45e2;
+    box-shadow:  0 0 10px rgba(110, 69, 226, 0.2);
+    outline: none;
+}
+ 
+.signup-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.signup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+}
+ 
+.extras {
+    margin-top: 15px;
+}
+ 
+.extras a {
+    color: #6e45e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+ 
+.extras a:hover {
+    color: #88d3ce;
+    text-decoration: underline;
+}
+ 
+.illustration {
+    width: 50%;
+    background: linear-gradient(135deg, #88d3ce, #6e45e2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.illustration img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+.login-link {
+	margin-top: 15px;
+	font-size: 15px;
+}
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th><a th:href="@{'/admin/users?page=1&sortField=id&sortDir=' + ${reverseSortDir}}">ID</a></th>
+            <th><a th:href="@{'/admin/users?page=1&sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+            <!-- Add other columns and sorting as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <!-- Other columns -->
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + (${currentPage - 1}) + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+        </li>
+        
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
+            th:classappend="${i == currentPage} ? 'active'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + ${i} + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"
+               th:text="${i}">1</a>
+        </li>
+        
+        <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+            <a class="page-link" th:href="@{'/admin/users?page=' + (${currentPage + 1}) + '&size=' + ${size} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+        </li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <div class="signup-form">
+            <h2>Create Account</h2>
+             <form th:action="@{/admin/users/register}" th:object="${user}" method="post">
+             
+             <!-- 	<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red; font-size:8px;"></span> -->
+                <div class="input-group">
+                <i class="material-icons">person</i>
+                    <input type="text" th:field="*{name}" placeholder="Enter your full name" required="required">
+                </div>
+                <div class="input-group">
+                <i class="material-icons">email</i>
+                   <input type="email" th:field="*{email}" required placeholder="Enter your email">
+                </div>
+              
+               
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red; font-size:8px;"></span>
+               <div class="input-group">
+                 <i class="material-icons">lock</i>
+	       		 <input type="password" th:field="*{password}" placeholder="Create a password">
+		       
+		   		 </div>
+              
+                <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="color:red; font-size:8px;"></span>
+               <div class="input-group">
+               <i class="material-icons">phone</i>
+	       		 <input type="tel" th:field="*{phone}" placeholder=" 09-999-999999">
+		       
+		   		 </div>
+                
+      
+           <!--      <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:red; font-size:8px;"></span> -->
+                <div class="input-group">
+                <i class="material-icons">location_on</i>
+                    <input type="text" th:field="*{address}"  placeholder="Enter your address" required="required">
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+                
+            </form>
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+        <p class="login-link">Already have an account? <a href="/login">Log In</a></p>
+        </div>
+        <div class="illustration">
+            <img src="images/login.png" alt="Illustration">
+        </div>
+    </div>
+</body>
+</html>
+ 
+</body>
+</html>

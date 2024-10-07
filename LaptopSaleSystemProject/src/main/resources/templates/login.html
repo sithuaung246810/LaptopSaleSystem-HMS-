@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+}
+ 
+.container {
+    display: flex;
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+}
+ 
+.login-form {
+    padding: 60px;
+    background: white;
+    width: 50%;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+ 
+h2 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 28px;
+    color: #6e45e2;
+}
+ 
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+ 
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #6e45e2;
+    font-size: 18px;
+}
+ 
+.input-group input {
+    width: 100%;
+    padding: 12px 50px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.input-group input:focus {
+    border-color: #6e45e2;
+    box-shadow: 0 0 10px rgba(110, 69, 226, 0.2);
+    outline: none;
+}
+ 
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(110, 69, 226, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+}
+
+.social-login-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+
+.gg-btn {
+    background-color: white;
+	width: 25px;
+	height: 25px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.gh-btn {
+    background-color: white;
+	width: 25px;
+	height: 25px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 30px;
+}
+
+#logo {
+ width: 30px;
+ height: 30px;
+}
+.signin-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 8px rgba(110, 69, 226, 0.5);
+}
+.extras {
+    margin-top: 5px;
+}
+ 
+.extras a {
+    color: #6e45e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px;
+}
+ 
+.extras a:hover {
+    color: #88d3ce;
+    text-decoration: underline;
+}
+ 
+.illustration {
+    width: 50%;
+    background: linear-gradient(135deg, #88d3ce, #6e45e2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.illustration img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+p {
+ font-size:14px;
+ color: grey;
+ margin-top: 20px;
+ margin-bottom:5px;
+}
+
+.register-link p,a {
+	font-size: 15px;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h2>Log In</h2>
+           <form th:action="@{/login}" method="post" >
+                <div class="input-group">
+                      <i class="material-icons">email</i>
+                     <input type="email" id="email" name="email" required placeholder="Enter Your Email">
+                </div>
+                <div class="input-group">
+                      <i class="material-icons">lock</i>
+                    <input type="password" id="password" name = "password" placeholder="Enter Your Password" required>
+                </div>
+                
+                 <input type="hidden" name="laptopId" th:value="${laptopId}" />
+                <input type="hidden" name="quantity" th:value="${quantity}" />
+            
+                
+                <button type="submit" class="login-btn">Login</button><br>
+                </form>
+                <p>_____or signin with_____</p>
+                <div class="social-login-container">
+                <form action="/oauth2/authorization/google" method="get">
+					<button type="submit" class="gg-btn"><image id="logo" src="/images/Google.png"></button>  
+					  
+		       </form>
+		       <form action="/oauth2/authorization/github" method="get">  
+					<button type="submit" class="gh-btn"><image id="logo" src="/images/Git.png"></button>    
+		       </form>
+		       </div>
+                <div class="extras">
+                    <p><a th:href="@{/forgotPassword}">Forgot Password?</a></p>
+                </div>
+            
+        <p th:if="${error}" th:text="${error}" class="error-message"></p>
+        <div th:if="${showRegisterLink}" class="register-link">
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
+       
+    </div>
+     <div class="illustration">
+            <img src="images/login.png" alt="Illustration">
+        </div>
+       
+</body>
+</html>

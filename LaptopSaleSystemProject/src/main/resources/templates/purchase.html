@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Information</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+
+#home {
+	margin-top:3px;
+    font-size: 35px;
+    position:absolute;
+    right:3%;
+}
+ 
+main {
+        	margin-top: 140px;
+            font-family: Arial, sans-serif;
+            background-color: #f1fdfb;
+            
+        }
+ 
+.purchase-info {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+ 
+.info-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+ 
+.info-header h2 {
+    margin: 0;
+    color: #333;
+}
+ 
+.info-details {
+    margin-top: 20px;
+}
+ 
+.info-row {
+    display: flex;
+    padding: 10px 0;
+}
+ 
+.info-label {
+    font-weight: bold;
+    color: #555;
+}
+ 
+.info-value {
+    color: #333;
+    text-align: right;
+    margin-left:10px;
+}
+ 
+table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: white;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: white;
+        }
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            padding: 10px;
+        }
+ 
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+ 
+.edit-button, .confirm-button {
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.edit-button i, .confirm-button i {
+    margin-right: 8px;
+}
+ 
+.edit-button:hover, .confirm-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(110, 69, 226, 0.5);
+    background: #88d3ce;
+}
+ 
+.confirm-button {
+    background: linear-gradient(160deg, #88d3ce, #6e45e2);
+}
+ 
+.confirm-button:hover {
+    background: #88d3ce;
+}
+#photo {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            display: none;
+            margin-top:10px;
+        }
+ 
+        .pay {
+            cursor: pointer;
+            border: none;
+            background-color: white;
+        }  
+        .info-label1 {
+		    font-weight: bold;
+		    color: #555;
+		    margin-top: 10px;
+		}
+</style>
+</head>
+<body>
+    <header>
+        <div th:replace="fragments/navbar :: navbar"></div>
+    </header>
+ 
+    <main>
+    <form th:action="@{/confirmPurchase}" method="post">
+        <div class="container">
+            <section class="purchase-info">
+                <div class="info-header">
+                    <h2>Purchase Summary</h2>
+                    <p align="right"><b>Date:</b> <span id="currentDate"></span></p>
+                    
+                </div>
+                <div class="info-details">
+                   
+                    <div class="info-row">
+                        <div class="info-label">Customer Name: </div>
+                        <div class="info-value" th:text="${user.name}"> </div>
+                    </div>
+                      <div class="info-row">
+                        <div class="info-label">Customer Email: </div>
+                        <div class="info-value" th:text="${user.email}"></div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">Customer Phone: </div>
+                        <div class="info-value" th:text="${user.phone}"> </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label1">Choose Payment Method: </div>
+						    <div class="info-value">
+						            <button type="button" onclick="showPhoto('/images/kpay1.jpg')" class="pay">
+						            	<img src="/images/kpay.png" alt="" width="40" height="40"/>
+						            </button>
+						                                  
+						            <button type="button" onclick="showPhoto('/images/wave1.png')" class="pay">
+						            	<img src="/images/wave.png" alt="" width="40" height="40"/>
+						            </button>
+						            
+						            <button type="button" onclick="showPhoto('/images/cb1.jpg')" class="pay">
+						            	<img src="/images/cb.png" alt="" width="40" height="40"/>
+						            </button>
+						            
+                        			<button type="button" onclick="showPhoto('/images/aya1.jpg')" class="pay">
+                        				<img src="/images/aya.png" alt="" width="40" height="40"/>
+                        			</button>
+						        <img id="photo" alt="Photo Display Area">
+						    </div>
+                    </div>
+                   
+                    <table>
+        				<thead>
+           			 		<tr>
+                				<th>Model</th>
+                				<th>Brand</th>
+                				<th>Unit Price</th>
+                				<th>Quantity</th>
+                				<th>Total Price</th>
+            				</tr>
+        				</thead>
+        				<tbody>
+					        <tr th:each="item : ${purchaseItems}">
+					            <td><p th:text="${item.modelNo}"></p></td>
+					            <td><p th:text="${item.brandName}"></p></td>
+					            <td><p th:text="'$' + ${#numbers.formatDecimal(item.price, 1, 'COMMA', 2, 'POINT')}"></p></td>
+					            <td><p th:text="${item.quantity}"></p></td>
+					            <td><p th:text="'$' + ${#numbers.formatDecimal(item.price * item.quantity, 1, 'COMMA', 2, 'POINT')}"></p></td>
+					        </tr>
+					    </tbody>
+					    
+    				</table>
+                
+                </div>
+                <div class="actions">
+                    <button class="confirm-button">
+                        <i class="material-icons">check_circle</i> Confirm Purchase
+                    </button>
+                </div>
+            </section>
+        </div>
+        </form>
+    </main>
+    <script>
+    function showPhoto(photo) {
+        var photoElement = document.getElementById('photo');
+        photoElement.src = photo;
+        photoElement.style.display = 'block';  // Show the image when a button is clicked
+    }
+    
+	    var today = new Date();
+	
+	    var formattedDate = today.getFullYear() + '-' + 
+	                        ('0' + (today.getMonth() + 1)).slice(-2) + '-' + 
+	                        ('0' + today.getDate()).slice(-2);
+	
+	    document.getElementById('currentDate').textContent = formattedDate;
+	    
+	    document.addEventListener('DOMContentLoaded', function() {
+	        const form = document.querySelector('form');
+	        const submitButton = document.querySelector('.confirm-button');
+
+	        form.addEventListener('submit', function() {
+	            
+	            submitButton.disabled = true;
+	            submitButton.style.backgroundColor = 'gray';
+	            submitButton.style.cursor = 'not-allowed';
+	        });
+	    });
+	</script>
+    
+</body>
+</html>
+ 
